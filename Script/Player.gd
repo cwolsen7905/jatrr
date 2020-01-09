@@ -87,8 +87,6 @@ func _on_JumpArea2D_area_entered(area):
 	if(groups.has("jumper")):
 		JUMP = 1000
 		$Audio/BlobPlay.play("Blob")
-	#if (groups.has("")):
-	#	$"../../".score = $"../../".score + 1
 
 func _on_PlayerArea2D_area_entered(area):
 	var getgroups = area.get_groups()

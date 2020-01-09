@@ -87,6 +87,8 @@ func _physics_process(delta):
 		timer = 0
 		
 	$GUI/score.text = 'Score: ' + str(score) + RECORD
+	$GUI/streak.text = 'Streak: ' + str(score)
+	
 	$End_screen/ColorRect/your_score.text = 'Your Score: ' + str(score)
 	
 	if (max_score < score):
