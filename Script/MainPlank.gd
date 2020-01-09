@@ -13,4 +13,3 @@ func _physics_process(delta):
 		$"../GUI/TouchScreen/TouchHintRight".stop()
 		$"../GUI/TouchScreen/TouchHintLeft".hide()
 		$"../GUI/TouchScreen/TouchHintRight".hide()
-		

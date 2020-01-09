@@ -1,5 +1,4 @@
 extends Sprite
-
  
 var POSX = 1
 var POSY = 1
@@ -14,7 +13,6 @@ func _ready():
 	POSY = rand_range(1, 2)
 
 func _physics_process(delta):
-
 	if ($"../../../".score_time > 32):
 		if position.x > 800:
 			POSX = -POSX

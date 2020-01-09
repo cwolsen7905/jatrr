@@ -41,5 +41,3 @@ func _on_Area2D_area_entered(area):
 		HAS_PLAYER = false
 	if ($"../../Player/PlayerBody".is_on_floor()):
 		$"../../".score = $"../../".score + 1
-		
-	

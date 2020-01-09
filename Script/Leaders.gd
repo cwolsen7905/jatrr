@@ -14,7 +14,7 @@ func _print_list():
 
 func _on_GetLeaders_request_completed(result, response_code, headers, body):
 	list = body.get_string_from_utf8()
-	$BlackBack/YourScore.text = 'Ваш максимальный рекорд: ' + str($"../".max_score)
+	$BlackBack/YourScore.text = 'Your max score: ' + str($"../".max_score)
 	if(response_code == 200):
 		fs.open(FILE, File.WRITE)
 		fs.store_string(list)

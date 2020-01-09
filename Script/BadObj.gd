@@ -8,4 +8,3 @@ func _physics_process(delta):
 		SPEED = -SPEED
 	if (position.x < -14):
 		SPEED = -SPEED
-	

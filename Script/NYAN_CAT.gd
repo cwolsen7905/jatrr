@@ -1,5 +1,4 @@
 extends Node2D
-
  
 var POSX = 1
 var POSY = 1
