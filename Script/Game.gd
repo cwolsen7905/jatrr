@@ -69,7 +69,7 @@ func _physics_process(delta):
 		randomize()
 		plank.position.y = screenW - rand_range(1280, 1380)
 		randomize()
-		plank.position.x = rand_range(30, 656)#30
+		plank.position.x = rand_range(30, 656)
 		$planks.add_child(plank)
 		score_time += 1
 		if (score_time == 33):
@@ -157,15 +157,6 @@ func _on_BackFromAboutSettings_pressed():
 func _on_Settings_pressed():
 	$Pause_screen/Buttons.hide()
 	$Pause_screen/Settings.show()
-
-func _on_CryptoButton_pressed():
-	$Pause_screen/Buttons.hide()
-	$Pause_screen/Crypto.show()
-	
-func _on_BackFromAboutCrypto_pressed():
-	$Pause_screen/Buttons.show()
-	$Pause_screen/Crypto.hide()
-
 
 func _on_VersionGet_request_completed(result, response_code, headers, body):
 	response = response_code
