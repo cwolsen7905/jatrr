@@ -333,7 +333,6 @@ tracks/0/keys = {
 script = ExtResource( 1 )
 
 [node name="Background" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="background_image2" type="Sprite" parent="Background"]
 position = Vector2( 0, 1280 )
@@ -346,6 +345,7 @@ centered = false
 
 [node name="FlyObjects" type="Node2D" parent="."]
 pause_mode = 2
+editor/display_folded = true
 
 [node name="Saturns" type="Node2D" parent="FlyObjects"]
 
@@ -685,6 +685,7 @@ clip_text = true
 pause_mode = 2
 
 [node name="GUI" type="Control" parent="."]
+editor/display_folded = true
 visible = false
 margin_right = 40.0
 margin_bottom = 40.0
@@ -741,7 +742,6 @@ custom_fonts/font = SubResource( 27 )
 custom_colors/font_color = Color( 0.992188, 0, 0.837158, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "Score:"
-percent_visible = -0.166667
 
 [node name="NewRecord" type="Sprite" parent="GUI/score"]
 visible = false
@@ -779,6 +779,7 @@ texture = ExtResource( 35 )
 
 [node name="Pause_screen" type="Control" parent="."]
 pause_mode = 2
+editor/display_folded = true
 visible = false
 margin_right = 40.0
 margin_bottom = 40.0
@@ -1026,6 +1027,7 @@ valign = 1
 
 [node name="NameInput" type="Control" parent="."]
 pause_mode = 2
+editor/display_folded = true
 visible = false
 margin_right = 40.0
 margin_bottom = 40.0
