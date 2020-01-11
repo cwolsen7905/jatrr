@@ -10,7 +10,7 @@ config_version=3
 
 [application]
 
-config/name="FabJump"
+config/name="Joseph and the Rainbow Robe"
 run/main_scene="res://Scenes/Game.tscn"
 boot_splash/image="res://Images/FlyObj/SpaceMan.png"
 boot_splash/fullsize=false
