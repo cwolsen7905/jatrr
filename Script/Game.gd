@@ -11,7 +11,7 @@ var score			= 0
 var score_time		= 0
 var max_score		= 0
 var need_save		= false
-var gamedata 		= 'user://gamedata-test.save'
+var gamedata 		= 'user://gamedata.save'
 var playernamedata	= 'user://playerdata.save'
 var playername		= ''
 var CanChangeNick 	= false
@@ -25,7 +25,7 @@ var on_floor		= false
 var planke			= preload("res://Scenes/Plank.tscn")
 var hearthe			= preload("res://Scenes/Health.tscn")
 var spawnhearth		= 0
-var VERSION			= '1.34.7'
+var VERSION			= '0.95'
 var response		= 0
 var network			= false
 var ValidName		= false
@@ -159,21 +159,23 @@ func _on_Settings_pressed():
 	$Pause_screen/Settings.show()
 
 func _on_VersionGet_request_completed(result, response_code, headers, body):
-	response = response_code
-	CURRENT_VERSION = body.get_string_from_utf8()
-	if (playername == "Anonymous"):
-		CanChangeNick = true
-		$Pause_screen/Buttons/Change_nick.show()
-	elif(playername != ''):
-		pass
-	else:
-		CanChangeNick = true
-		if(response_code == 200):
-			$NameInput.show()
-	if(VERSION + "\n" != CURRENT_VERSION && response_code == 200):
-		network = true
-		$Start_screen/ColorRect/New_version.show()
-		
+	if (result == HTTPRequest.RESULT_SUCCESS):
+		response = response_code
+		CURRENT_VERSION = body.get_string_from_utf8()
+		print_debug("Player Name" + playername)
+		if (playername == "Anonymous"):
+			CanChangeNick = true
+			$Pause_screen/Buttons/Change_nick.show()
+		elif(playername != ''):
+			pass
+		else:
+			CanChangeNick = true
+			if(response_code == 200):
+				$NameInput.show()
+		if(VERSION + "\n" != CURRENT_VERSION && response_code == 200):
+			network = true
+			$Start_screen/ColorRect/New_version.show()
+
 func send_score(player, score):
 	var player_send = str(player)
 	var score_send = str(score)

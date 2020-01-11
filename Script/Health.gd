@@ -3,7 +3,7 @@ extends Node2D
 var trans = Vector2(0.1, 0.1)
 
 func _physics_process(delta):
-	$Sprite.scale += trans
+	$Sprite.scale += trans * delta #delta was not originally part of this
 	if ($Sprite.scale.x > 3):
 		trans = -trans
 	if ($Sprite.scale.x < 2):

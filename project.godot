@@ -17,8 +17,8 @@ _global_script_class_icons={
 
 config/name="Joseph and the Rainbow Robe"
 run/main_scene="res://Scenes/Game.tscn"
-boot_splash/image="res://Images/FlyObj/SpaceMan.png"
-boot_splash/fullsize=false
+boot_splash/image="res://Images/V1-Games.png"
+boot_splash/bg_color=Color( 1, 1, 1, 1 )
 config/icon="res://App_icon.png"
 
 [display]
@@ -26,8 +26,8 @@ config/icon="res://App_icon.png"
 window/size/width=720
 window/size/height=1280
 window/size/borderless=true
-window/size/test_width=480
-window/size/test_height=845
+window/size/test_width=720
+window/size/test_height=1280
 window/dpi/allow_hidpi=true
 window/handheld/orientation="portrait"
 window/stretch/mode="2d"

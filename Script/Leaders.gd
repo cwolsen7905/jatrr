@@ -20,7 +20,6 @@ func _on_GetLeaders_request_completed(result, response_code, headers, body):
 		fs.store_string(list)
 		fs.close()
 		_print_list()
-		#$Start_screen/ColorRect/New_version.show()
 	else:
 		fs.open(FILE, File.READ)
 		list = fs.get_as_text()
