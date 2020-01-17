@@ -214,98 +214,98 @@ font_data = ExtResource( 38 )
 size = 50
 font_data = ExtResource( 38 )
 
-[sub_resource type="DynamicFontData" id=41]
+[sub_resource type="DynamicFontData" id=40]
 font_path = "res://Fonts/montserrat_alt/MontserratAlternates-Bold.otf"
 
-[sub_resource type="DynamicFont" id=42]
+[sub_resource type="DynamicFont" id=41]
 size = 40
 use_filter = true
-font_data = SubResource( 41 )
+font_data = SubResource( 40 )
 
-[sub_resource type="DynamicFont" id=43]
+[sub_resource type="DynamicFont" id=42]
 size = 50
 use_filter = true
 font_data = ExtResource( 21 )
 
-[sub_resource type="DynamicFontData" id=44]
+[sub_resource type="DynamicFontData" id=43]
 font_path = "res://Fonts/montserrat_alt/MontserratAlternates-ExtraBold.otf"
 
-[sub_resource type="DynamicFont" id=45]
+[sub_resource type="DynamicFont" id=44]
 size = 25
 use_filter = true
-font_data = SubResource( 44 )
+font_data = SubResource( 43 )
 
-[sub_resource type="DynamicFont" id=46]
+[sub_resource type="DynamicFont" id=45]
 size = 50
 font_data = ExtResource( 21 )
 
-[sub_resource type="DynamicFont" id=47]
+[sub_resource type="DynamicFont" id=46]
 size = 40
 font_data = ExtResource( 38 )
 
-[sub_resource type="DynamicFont" id=48]
+[sub_resource type="DynamicFont" id=47]
 size = 60
 font_data = ExtResource( 21 )
 
-[sub_resource type="DynamicFontData" id=49]
+[sub_resource type="DynamicFontData" id=48]
 font_path = "res://Fonts/montserrat_alt/MontserratAlternates-Bold.otf"
 
-[sub_resource type="DynamicFont" id=50]
+[sub_resource type="DynamicFont" id=49]
 size = 30
-font_data = SubResource( 49 )
+font_data = SubResource( 48 )
 
-[sub_resource type="DynamicFontData" id=51]
+[sub_resource type="DynamicFontData" id=50]
 font_path = "res://Fonts/montserrat_alt/MontserratAlternates-Bold.otf"
+
+[sub_resource type="DynamicFont" id=51]
+size = 40
+font_data = SubResource( 50 )
 
 [sub_resource type="DynamicFont" id=52]
-size = 40
-font_data = SubResource( 51 )
-
-[sub_resource type="DynamicFont" id=53]
 size = 30
 font_data = ExtResource( 38 )
 
-[sub_resource type="DynamicFont" id=54]
+[sub_resource type="DynamicFont" id=53]
 size = 40
 font_data = ExtResource( 21 )
 
-[sub_resource type="DynamicFont" id=55]
+[sub_resource type="DynamicFont" id=54]
 size = 25
 use_filter = true
 font_data = ExtResource( 38 )
 
-[sub_resource type="DynamicFont" id=56]
+[sub_resource type="DynamicFont" id=55]
 size = 15
 use_filter = true
 font_data = ExtResource( 38 )
 
-[sub_resource type="DynamicFont" id=57]
+[sub_resource type="DynamicFont" id=56]
 size = 22
 use_filter = true
 font_data = ExtResource( 38 )
 
-[sub_resource type="DynamicFont" id=58]
+[sub_resource type="DynamicFont" id=57]
 size = 50
 font_data = ExtResource( 21 )
 
-[sub_resource type="DynamicFont" id=59]
+[sub_resource type="DynamicFont" id=58]
 size = 40
 font_data = ExtResource( 38 )
 
-[sub_resource type="DynamicFont" id=60]
+[sub_resource type="DynamicFont" id=59]
 size = 30
 use_filter = true
 font_data = ExtResource( 38 )
 
-[sub_resource type="DynamicFontData" id=61]
+[sub_resource type="DynamicFontData" id=60]
 font_path = "res://Fonts/montserrat_alt/MontserratAlternates-Bold.otf"
 
-[sub_resource type="DynamicFont" id=62]
+[sub_resource type="DynamicFont" id=61]
 size = 50
 use_filter = true
-font_data = SubResource( 61 )
+font_data = SubResource( 60 )
 
-[sub_resource type="Animation" id=63]
+[sub_resource type="Animation" id=62]
 length = 15.0
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -546,6 +546,7 @@ script = ExtResource( 15 )
 
 [node name="StartButton" type="TextureButton" parent="Start_screen"]
 pause_mode = 2
+editor/display_folded = true
 margin_left = 90.0
 margin_top = 300.0
 margin_right = 640.0
@@ -763,7 +764,7 @@ texture_under = ExtResource( 36 )
 texture_progress = ExtResource( 37 )
 nine_patch_stretch = true
 
-[node name="streak" type="Label" parent="GUI"]
+[node name="charge" type="Label" parent="GUI"]
 margin_left = 10.0
 margin_top = 80.0
 margin_right = 150.0
@@ -771,9 +772,9 @@ margin_bottom = 82.0
 custom_fonts/font = SubResource( 27 )
 custom_colors/font_color = Color( 0.992188, 0, 0.837158, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-text = "Streak:"
+text = "Charge:"
 
-[node name="NewRecord2" type="Sprite" parent="GUI/streak"]
+[node name="NewRecord2" type="Sprite" parent="GUI/charge"]
 visible = false
 position = Vector2( -14.9941, 10.7011 )
 scale = Vector2( 0.252757, 0.253894 )
@@ -781,6 +782,7 @@ texture = ExtResource( 35 )
 
 [node name="Pause_screen" type="Control" parent="."]
 pause_mode = 2
+editor/display_folded = true
 visible = false
 margin_right = 40.0
 margin_bottom = 40.0
@@ -792,6 +794,7 @@ color = Color( 0, 0, 0, 0.613255 )
 
 [node name="Buttons" type="Control" parent="Pause_screen"]
 pause_mode = 2
+editor/display_folded = true
 margin_right = 40.0
 margin_bottom = 40.0
 
@@ -892,7 +895,7 @@ margin_left = 60.0
 margin_top = 190.0
 margin_right = 660.0
 margin_bottom = 1010.0
-custom_fonts/normal_font = SubResource( 42 )
+custom_fonts/normal_font = SubResource( 41 )
 custom_colors/default_color = Color( 0.78125, 0, 0.65918, 1 )
 custom_colors/selection_color = Color( 1, 0.980713, 0.691406, 1 )
 custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
@@ -921,7 +924,7 @@ margin_bottom = 1210.0
 [node name="BackFromAboutMe2" type="Label" parent="Pause_screen/AboutMe/BackFromAboutMe"]
 margin_right = 175.0
 margin_bottom = 62.0
-custom_fonts/font = SubResource( 43 )
+custom_fonts/font = SubResource( 42 )
 custom_colors/font_color = Color( 0.780392, 0, 0.658824, 1 )
 text = "Back"
 
@@ -942,7 +945,7 @@ margin_left = 280.0
 margin_top = 1160.0
 margin_right = 445.0
 margin_bottom = 1211.0
-custom_fonts/font = SubResource( 43 )
+custom_fonts/font = SubResource( 42 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "Back"
@@ -952,7 +955,7 @@ margin_left = 60.0
 margin_top = 190.0
 margin_right = 660.0
 margin_bottom = 1010.0
-custom_fonts/normal_font = SubResource( 42 )
+custom_fonts/normal_font = SubResource( 41 )
 custom_colors/default_color = Color( 1, 0, 0, 1 )
 custom_colors/selection_color = Color( 1, 0.980713, 0.691406, 1 )
 custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
@@ -966,7 +969,7 @@ margin_left = 50.0
 margin_top = 1210.0
 margin_right = 90.0
 margin_bottom = 1236.0
-custom_fonts/font = SubResource( 45 )
+custom_fonts/font = SubResource( 44 )
 custom_colors/font_color = Color( 0.78125, 0, 0.65918, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "VERSION"
@@ -987,7 +990,7 @@ margin_left = 10.0
 margin_top = -10.0
 margin_right = 185.0
 margin_bottom = 52.0
-custom_fonts/font = SubResource( 46 )
+custom_fonts/font = SubResource( 45 )
 custom_colors/font_color = Color( 0.780392, 0, 0.658824, 1 )
 text = "Back"
 
@@ -996,7 +999,7 @@ margin_left = 30.0
 margin_top = 257.0
 margin_right = 690.0
 margin_bottom = 950.0
-custom_fonts/normal_font = SubResource( 47 )
+custom_fonts/normal_font = SubResource( 46 )
 custom_colors/default_color = Color( 0.780392, 0, 0.658824, 1 )
 text = "Token"
 
@@ -1004,7 +1007,7 @@ text = "Token"
 margin_top = 60.0
 margin_right = 720.0
 margin_bottom = 142.0
-custom_fonts/font = SubResource( 48 )
+custom_fonts/font = SubResource( 47 )
 custom_colors/font_color = Color( 0.780392, 0, 0.658824, 1 )
 text = "Token"
 align = 1
@@ -1012,6 +1015,7 @@ valign = 1
 
 [node name="NameInput" type="Control" parent="."]
 pause_mode = 2
+editor/display_folded = true
 visible = false
 margin_right = 40.0
 margin_bottom = 40.0
@@ -1026,7 +1030,7 @@ margin_left = 30.0
 margin_top = 34.0
 margin_right = 680.0
 margin_bottom = 660.0
-custom_fonts/normal_font = SubResource( 50 )
+custom_fonts/normal_font = SubResource( 49 )
 custom_colors/default_color = Color( 0.78125, 0, 0.65918, 1 )
 bbcode_enabled = true
 bbcode_text = "Welcome to Joseph and the Rainbow Row
@@ -1049,7 +1053,7 @@ margin_top = 670.0
 margin_right = 540.0
 margin_bottom = 730.0
 hint_tooltip = "nick"
-custom_fonts/font = SubResource( 52 )
+custom_fonts/font = SubResource( 51 )
 custom_colors/font_color = Color( 0.78125, 0, 0.65918, 1 )
 align = 1
 max_length = 10
@@ -1061,7 +1065,7 @@ margin_top = 745.0
 margin_right = 540.0
 margin_bottom = 805.0
 hint_tooltip = "nick"
-custom_fonts/font = SubResource( 52 )
+custom_fonts/font = SubResource( 51 )
 custom_colors/font_color = Color( 0.78125, 0, 0.65918, 1 )
 align = 1
 max_length = 10
@@ -1072,7 +1076,7 @@ margin_left = 170.0
 margin_top = 820.0
 margin_right = 540.0
 margin_bottom = 880.0
-custom_fonts/font = SubResource( 53 )
+custom_fonts/font = SubResource( 52 )
 custom_colors/font_color = Color( 0.78125, 0, 0.65918, 1 )
 align = 1
 max_length = 30
@@ -1089,7 +1093,7 @@ margin_left = 20.0
 margin_top = 10.0
 margin_right = 348.0
 margin_bottom = 60.0
-custom_fonts/font = SubResource( 54 )
+custom_fonts/font = SubResource( 53 )
 custom_colors/font_color = Color( 0.78125, 0, 0.65918, 1 )
 text = "Confirm"
 align = 1
@@ -1106,7 +1110,7 @@ margin_left = 10.0
 margin_top = -10.0
 margin_right = 196.0
 margin_bottom = 45.0
-custom_fonts/font = SubResource( 55 )
+custom_fonts/font = SubResource( 54 )
 custom_colors/font_color = Color( 0.78125, 0, 0.65918, 1 )
 text = "Skip"
 align = 1
@@ -1117,7 +1121,7 @@ margin_left = -20.0
 margin_top = 40.0
 margin_right = 222.0
 margin_bottom = 59.0
-custom_fonts/font = SubResource( 56 )
+custom_fonts/font = SubResource( 55 )
 custom_colors/font_color = Color( 0.78125, 0, 0.65918, 1 )
 text = "Nick change will be possible"
 
@@ -1127,7 +1131,7 @@ margin_left = 170.0
 margin_top = 750.0
 margin_right = 540.0
 margin_bottom = 794.0
-custom_fonts/font = SubResource( 57 )
+custom_fonts/font = SubResource( 56 )
 custom_colors/font_color = Color( 0.78125, 0, 0.384521, 1 )
 text = "Name is busy, enter another"
 align = 1
@@ -1151,7 +1155,7 @@ margin_left = 140.0
 margin_top = 110.0
 margin_right = 585.0
 margin_bottom = 172.0
-custom_fonts/font = SubResource( 58 )
+custom_fonts/font = SubResource( 57 )
 custom_colors/font_color = Color( 0.78125, 0, 0.65918, 1 )
 text = "Leaderboard"
 
@@ -1160,7 +1164,7 @@ margin_left = 80.0
 margin_top = 200.0
 margin_right = 640.0
 margin_bottom = 1050.0
-custom_fonts/normal_font = SubResource( 59 )
+custom_fonts/normal_font = SubResource( 58 )
 custom_colors/default_color = Color( 0.78125, 0, 0.65918, 1 )
 bbcode_text = "IMAEGG))"
 text = "IMAEGG))"
@@ -1170,7 +1174,7 @@ margin_left = 90.0
 margin_top = 1070.0
 margin_right = 549.0
 margin_bottom = 1108.0
-custom_fonts/font = SubResource( 60 )
+custom_fonts/font = SubResource( 59 )
 custom_colors/font_color = Color( 0.78125, 0, 0.65918, 1 )
 text = "Your max"
 
@@ -1179,7 +1183,7 @@ margin_left = 280.0
 margin_top = 1150.0
 margin_right = 445.0
 margin_bottom = 1201.0
-custom_fonts/font = SubResource( 62 )
+custom_fonts/font = SubResource( 61 )
 custom_colors/font_color = Color( 0.78125, 0, 0.65918, 1 )
 text = "Back"
 
@@ -1193,11 +1197,10 @@ margin_bottom = 50.0
 use_threads = true
 
 [node name="GameMusic" type="AudioStreamPlayer" parent="."]
-editor/display_folded = true
 stream = ExtResource( 40 )
 
 [node name="GameMusic" type="AnimationPlayer" parent="GameMusic"]
-anims/GameSound = SubResource( 63 )
+anims/GameSound = SubResource( 62 )
 
 [node name="GetServerAddres" type="HTTPRequest" parent="."]
 pause_mode = 2

@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends KinematicBody2D 
 
 var SPEED = 3
 var SPEED_LEVEL = 3
@@ -11,8 +11,9 @@ func _physics_process(delta):
 	position.y += SPEED
 	
 	if $"../../".score > SPEED_LEVEL:
-		SPEED += 0.0005
+		SPEED += 0.05
 		SPEED_LEVEL += 1
+	
 	if position.y > 1281:
 		queue_free()
 	if $"../../".score_time > 32:
