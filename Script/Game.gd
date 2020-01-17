@@ -140,6 +140,7 @@ func _on_Retry_pressed():
     i.queue_free()
 	GAME = true
 	get_tree().paused = false
+	$Start_screen/StartButton/Start_music/StartSound.seek(0)
 	$Start_screen/StartButton/Start_music/StartSound.play('soundstart')
 
 func _on_BackFromAboutMe_pressed():

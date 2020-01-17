@@ -343,10 +343,9 @@ centered = false
 pause_mode = 2
 
 [node name="Saturns" type="Node2D" parent="FlyObjects"]
-editor/display_folded = true
 
 [node name="Sat1" type="Sprite" parent="FlyObjects/Saturns"]
-position = Vector2( 788.472, 315.024 )
+position = Vector2( 785.989, 317.507 )
 rotation = -2.52822
 scale = Vector2( -0.5, 0.5 )
 texture = ExtResource( 3 )
@@ -374,7 +373,6 @@ texture = ExtResource( 3 )
 script = ExtResource( 4 )
 
 [node name="PinkPlanets" type="Node2D" parent="FlyObjects"]
-editor/display_folded = true
 
 [node name="Pink1" type="Sprite" parent="FlyObjects/PinkPlanets"]
 position = Vector2( 759.649, 631.337 )
@@ -398,7 +396,6 @@ texture = ExtResource( 5 )
 script = ExtResource( 4 )
 
 [node name="Cosmonauts" type="Node2D" parent="FlyObjects"]
-editor/display_folded = true
 
 [node name="Cosm1" type="Sprite" parent="FlyObjects/Cosmonauts"]
 position = Vector2( 772.618, 1054.02 )
@@ -417,7 +414,6 @@ script = ExtResource( 4 )
 [node name="Cosm3" type="Sprite" parent="FlyObjects/Cosmonauts"]
 position = Vector2( 810.054, 68.866 )
 rotation = 1.98348
-scale = Vector2( 1.16199, -0.963066 )
 texture = ExtResource( 6 )
 script = ExtResource( 4 )
 
@@ -443,23 +439,23 @@ texture = ExtResource( 6 )
 script = ExtResource( 4 )
 
 [node name="Cosm8" type="Sprite" parent="FlyObjects/Cosmonauts"]
-position = Vector2( 105.132, -40.3945 )
+position = Vector2( 104.408, -40.3945 )
 rotation = 1.5587
-scale = Vector2( 1.92857, 1.69697 )
+scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 7 )
 script = ExtResource( 4 )
 
 [node name="Cosm9" type="Sprite" parent="FlyObjects/Cosmonauts"]
 position = Vector2( 774.3, 195.34 )
 rotation = -0.857738
-scale = Vector2( -1.64286, 0.787879 )
+scale = Vector2( -0.4, 0.4 )
 texture = ExtResource( 7 )
 script = ExtResource( 4 )
 
 [node name="Cosm10" type="Sprite" parent="FlyObjects/Cosmonauts"]
 position = Vector2( -39.7278, 1209.82 )
 rotation = 0.692545
-scale = Vector2( 2.64286, 1.09091 )
+scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 7 )
 script = ExtResource( 4 )
 
@@ -507,6 +503,7 @@ position = Vector2( 10, 0 )
 
 [node name="Start_screen" type="Control" parent="."]
 pause_mode = 2
+editor/display_folded = true
 margin_right = 40.0
 margin_bottom = 40.0
 
@@ -546,7 +543,6 @@ script = ExtResource( 15 )
 
 [node name="StartButton" type="TextureButton" parent="Start_screen"]
 pause_mode = 2
-editor/display_folded = true
 margin_left = 90.0
 margin_top = 300.0
 margin_right = 640.0
@@ -1197,6 +1193,7 @@ margin_bottom = 50.0
 use_threads = true
 
 [node name="GameMusic" type="AudioStreamPlayer" parent="."]
+editor/display_folded = true
 stream = ExtResource( 40 )
 
 [node name="GameMusic" type="AnimationPlayer" parent="GameMusic"]

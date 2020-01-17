@@ -64,7 +64,6 @@ frames = SubResource( 1 )
 [node name="Area2D" type="Area2D" parent="." groups=[
 "used",
 ]]
-editor/display_folded = true
 position = Vector2( 0.188541, 0.518483 )
 
 [node name="Area" type="CollisionShape2D" parent="Area2D"]
@@ -79,7 +78,6 @@ shape = SubResource( 2 )
 one_way_collision = true
 
 [node name="Jumper" type="Sprite" parent="."]
-editor/display_folded = true
 visible = false
 position = Vector2( 5.52109, -7.48873 )
 scale = Vector2( 0.713537, 0.690445 )
