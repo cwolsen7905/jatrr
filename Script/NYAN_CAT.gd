@@ -14,7 +14,7 @@ func _ready():
 
 func _physics_process(delta):
 
-	if ($"../../".score_time > 15): #MrOlsen MUSIC
+	if ($"../../".score_time > 17): #MrOlsen MUSIC
 		if position.x > 800:
 			POSX = -POSX
 		if position.x < -100:
