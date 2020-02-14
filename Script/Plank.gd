@@ -11,13 +11,13 @@ func _physics_process(delta):
 	position.y += SPEED
 	
 	if $"../../".score > SPEED_LEVEL:
-		SPEED += 0.05
+		SPEED += 0.0005
 		SPEED_LEVEL += 1
 	
 	if position.y > 1281:
 		queue_free()
-	if $"../../".score_time > 32:
-		$AnimatedSprite.play()
+	if $"../../".score_time >= 14: #MrOlsen MUSIC
+		$AnimatedSprite.play('Rainbow')
 		JUMPER_CAN = true
 		
 		if(JUMPER_CAN == true && CAN_JUMPER_CAN == true && delta > 0.01):
@@ -42,3 +42,4 @@ func _on_Area2D_area_entered(area):
 		HAS_PLAYER = false
 	if ($"../../Player/PlayerBody".is_on_floor()):
 		$"../../".score = $"../../".score + 1
+		

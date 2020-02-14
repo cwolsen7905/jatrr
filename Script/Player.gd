@@ -38,6 +38,7 @@ func _physics_process(delta):
 		vel.y = -JUMP;
 		JUMP = 700
 		$"../../".on_floor = true
+		#$"../../".score = $"../../".score + 1
 	else:
 		$"../../".on_floor = false
 		
@@ -66,7 +67,7 @@ func _physics_process(delta):
 		$"../../".GAME = false
 		get_tree().paused = true
 		$"../../End_screen".show()
-		$"../../Start_screen/StartButton/Start_music".stop()
+		$"../../Start_screen/StartButton/Start_music2".stop()
 		$"../../GameMusic".stop()
 		$"../../GUI".hide()
 	

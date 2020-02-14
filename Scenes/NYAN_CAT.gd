@@ -16,7 +16,7 @@ func _ready():
 func _physics_process(delta):
 
 #2020-01-17 MrOlsen: this is the original	if ($"../../".score_time > 37):
-	if ($"../../".score_time > 370):
+	if ($"../../".score_time > 37):
 		if position.x > 800:
 			POSX = -POSX
 		if position.x < -100:

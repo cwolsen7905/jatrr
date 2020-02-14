@@ -13,7 +13,7 @@ func _ready():
 	POSY = rand_range(1, 2)
 
 func _physics_process(delta):
-	if ($"../../../".score_time > 32):
+	if ($"../../../".score_time > 15): #MrOlsen - Music
 		if position.x > 800:
 			POSX = -POSX
 		if position.x < -100:

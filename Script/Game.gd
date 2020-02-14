@@ -72,12 +72,13 @@ func _physics_process(delta):
 		plank.position.x = rand_range(30, 656)
 		$planks.add_child(plank)
 		score_time += 1
-		if (score_time == 33):
+		if (score_time == 14): #MrOlsen MUSIC
+			$"Start_screen/StartButton/Start_music2".stop()
 			$GameMusic.play()
 		randomize()
 		spawnhearth = rand_range(0, 24)
 		spawnhearth = round(spawnhearth)
-		if (score_time > 33 && spawnhearth == 0):
+		if (score_time > 34 && spawnhearth == 0): #MrOlsen Music
 			var hearth = hearthe.instance()
 			randomize()
 			hearth.position.y = screenW - rand_range(1280, 1380)
@@ -135,13 +136,13 @@ func _on_Retry_pressed():
 	$StartPlank.position.x=0
 	$StartPlank.position.y=200
 	for i in $planks.get_children():
-    i.queue_free()
+		i.queue_free()
 	for i in $hearths.get_children():
-    i.queue_free()
+		i.queue_free()
 	GAME = true
 	get_tree().paused = false
-	$Start_screen/StartButton/Start_music/StartSound.seek(0)
-	$Start_screen/StartButton/Start_music/StartSound.play('soundstart')
+	$Start_screen/StartButton/Start_music2/StartSound.seek(0)
+	$Start_screen/StartButton/Start_music2/StartSound.play('soundstart')
 
 func _on_BackFromAboutMe_pressed():
 	$Pause_screen/Buttons.show()
@@ -163,7 +164,6 @@ func _on_VersionGet_request_completed(result, response_code, headers, body):
 	if (result == HTTPRequest.RESULT_SUCCESS):
 		response = response_code
 		CURRENT_VERSION = body.get_string_from_utf8()
-		print_debug("Player Name" + playername)
 		if (playername == "Anonymous"):
 			CanChangeNick = true
 			$Pause_screen/Buttons/Change_nick.show()
