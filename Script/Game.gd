@@ -72,7 +72,7 @@ func _physics_process(delta):
 		plank.position.x = rand_range(30, 656)
 		$planks.add_child(plank)
 		score_time += 1
-		if (score_time == 14): #MrOlsen MUSIC
+		if (score_time == 15): #MrOlsen MUSIC
 			$"Start_screen/StartButton/Start_music2".stop()
 			$GameMusic.play()
 		randomize()
@@ -88,7 +88,6 @@ func _physics_process(delta):
 		timer = 0
 		
 	$GUI/score.text = 'Score: ' + str(score) + RECORD
-	$GUI/charge.text = 'Charge: ' + str(score)
 	
 	$End_screen/ColorRect/your_score.text = 'Your Score: ' + str(score)
 	
