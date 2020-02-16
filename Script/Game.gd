@@ -72,9 +72,9 @@ func _physics_process(delta):
 		plank.position.x = rand_range(30, 656)
 		$planks.add_child(plank)
 		score_time += 1
-		if (score_time == 16): #MrOlsen MUSIC
+		if (score_time == Constants.intro_loop): #MrOlsen MUSIC
 			$"Start_screen/StartButton/Start_music2".stop()
-		if (score_time == 17):
+		if (score_time == Constants.intro_loop + 1):
 			$GameMusic.play()
 		randomize()
 		spawnhearth = rand_range(0, 24)

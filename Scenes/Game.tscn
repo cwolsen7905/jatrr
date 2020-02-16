@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=2]
+[gd_scene load_steps=102 format=2]
 
 [ext_resource path="res://Script/Game.gd" type="Script" id=1]
 [ext_resource path="res://Images/Back/back.jpg" type="Texture" id=2]
@@ -7,8 +7,7 @@
 [ext_resource path="res://Images/FlyObj/Apple.png" type="Texture" id=5]
 [ext_resource path="res://App_icon.png" type="Texture" id=6]
 [ext_resource path="res://Images/FlyObj/Banana.png" type="Texture" id=7]
-[ext_resource path="res://Scenes/NYAN_CAT.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/NYAN_CAT.gd" type="Script" id=9]
+[ext_resource path="res://Scenes/Jesus.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Images/FlyObj/Grape.png" type="Texture" id=10]
 [ext_resource path="res://Images/FlyObj/Orange.png" type="Texture" id=11]
 [ext_resource path="res://Images/FlyObj/Cross.png" type="Texture" id=12]
@@ -342,138 +341,139 @@ centered = false
 [node name="FlyObjects" type="Node2D" parent="."]
 pause_mode = 2
 
-[node name="Saturns" type="Node2D" parent="FlyObjects"]
+[node name="Apples" type="Node2D" parent="FlyObjects"]
 
-[node name="Sat1" type="Sprite" parent="FlyObjects/Saturns"]
-position = Vector2( 785.989, 317.507 )
-rotation = -2.52822
-scale = Vector2( -0.7, 0.7 )
-texture = ExtResource( 7 )
-script = ExtResource( 4 )
-
-[node name="Sat2" type="Sprite" parent="FlyObjects/Saturns"]
-position = Vector2( -54.3043, 415.951 )
-rotation = -0.887721
-scale = Vector2( -0.9, 0.9 )
-texture = ExtResource( 7 )
-script = ExtResource( 4 )
-
-[node name="Sat3" type="Sprite" parent="FlyObjects/Saturns"]
-position = Vector2( 367.832, -59.0889 )
-rotation = -0.496595
-scale = Vector2( 0.8, 0.8 )
-texture = ExtResource( 7 )
-script = ExtResource( 4 )
-
-[node name="Sat4" type="Sprite" parent="FlyObjects/Saturns"]
-position = Vector2( 771.521, 841.894 )
-rotation = 1.69135
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 7 )
-script = ExtResource( 4 )
-
-[node name="PinkPlanets" type="Node2D" parent="FlyObjects"]
-
-[node name="Pink1" type="Sprite" parent="FlyObjects/PinkPlanets"]
-position = Vector2( 759.649, 631.337 )
-rotation = 1.24066
-scale = Vector2( 0.3, 0.3 )
-texture = ExtResource( 11 )
-script = ExtResource( 4 )
-
-[node name="Pink2" type="Sprite" parent="FlyObjects/PinkPlanets"]
-position = Vector2( -45.9988, 581.375 )
-rotation = -0.707714
-scale = Vector2( 0.6, 0.6 )
-texture = ExtResource( 11 )
-script = ExtResource( 4 )
-
-[node name="Pink3" type="Sprite" parent="FlyObjects/PinkPlanets"]
-position = Vector2( 780.868, 483.316 )
-rotation = 1.50659
-scale = Vector2( 0.7, 0.7 )
-texture = ExtResource( 11 )
-script = ExtResource( 4 )
-
-[node name="Cosmonauts" type="Node2D" parent="FlyObjects"]
-
-[node name="Cosm1" type="Sprite" parent="FlyObjects/Cosmonauts"]
+[node name="Apple_1" type="Sprite" parent="FlyObjects/Apples"]
 position = Vector2( 772.618, 1054.02 )
 rotation = 1.77259
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 script = ExtResource( 4 )
 
-[node name="Cosm2" type="Sprite" parent="FlyObjects/Cosmonauts"]
+[node name="Apple_2" type="Sprite" parent="FlyObjects/Apples"]
 position = Vector2( -67.4016, 821.92 )
 rotation = -2.05014
 scale = Vector2( 0.55, 0.55 )
 texture = ExtResource( 5 )
 script = ExtResource( 4 )
 
-[node name="Cosm3" type="Sprite" parent="FlyObjects/Cosmonauts"]
+[node name="Apple_3" type="Sprite" parent="FlyObjects/Apples"]
 position = Vector2( 810.054, 68.866 )
 rotation = 1.98348
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 5 )
 script = ExtResource( 4 )
 
-[node name="Cosm4" type="Sprite" parent="FlyObjects/Cosmonauts"]
+[node name="Apple_4" type="Sprite" parent="FlyObjects/Apples"]
 position = Vector2( 791.331, 563.708 )
 rotation = -1.20402
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 5 )
 script = ExtResource( 4 )
 
-[node name="Cosm5" type="Sprite" parent="FlyObjects/Cosmonauts"]
+[node name="Apple_5" type="Sprite" parent="FlyObjects/Apples"]
 position = Vector2( -90.1346, 103.695 )
 rotation = 0.799584
 scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 5 )
 script = ExtResource( 4 )
 
-[node name="Cosm6" type="Sprite" parent="FlyObjects/Cosmonauts"]
+[node name="Bananas" type="Node2D" parent="FlyObjects"]
+
+[node name="Banana_1" type="Sprite" parent="FlyObjects/Bananas"]
+position = Vector2( 785.989, 317.507 )
+rotation = -2.52822
+scale = Vector2( -0.7, 0.7 )
+texture = ExtResource( 7 )
+script = ExtResource( 4 )
+
+[node name="Banana_2" type="Sprite" parent="FlyObjects/Bananas"]
+position = Vector2( -54.3043, 415.951 )
+rotation = -0.887721
+scale = Vector2( -0.9, 0.9 )
+texture = ExtResource( 7 )
+script = ExtResource( 4 )
+
+[node name="Banana_3" type="Sprite" parent="FlyObjects/Bananas"]
+position = Vector2( 367.832, -59.0889 )
+rotation = -0.496595
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 7 )
+script = ExtResource( 4 )
+
+[node name="Banana_4" type="Sprite" parent="FlyObjects/Bananas"]
+position = Vector2( 771.521, 841.894 )
+rotation = 1.69135
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 7 )
+script = ExtResource( 4 )
+
+[node name="Grapes" type="Node2D" parent="FlyObjects"]
+
+[node name="Grape_1" type="Sprite" parent="FlyObjects/Grapes"]
 position = Vector2( 658.552, 1352.93 )
 rotation = -1.50218
 scale = Vector2( -0.269231, 0.260942 )
 texture = ExtResource( 6 )
 script = ExtResource( 4 )
 
-[node name="Cosm8" type="Sprite" parent="FlyObjects/Cosmonauts"]
+[node name="Grape_2" type="Sprite" parent="FlyObjects/Grapes"]
 position = Vector2( 104.408, -40.3945 )
 rotation = 1.5587
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 10 )
 script = ExtResource( 4 )
 
-[node name="Cosm9" type="Sprite" parent="FlyObjects/Cosmonauts"]
+[node name="Grape_3" type="Sprite" parent="FlyObjects/Grapes"]
 position = Vector2( 774.3, 195.34 )
 rotation = -0.857738
 scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 10 )
 script = ExtResource( 4 )
 
-[node name="Cosm10" type="Sprite" parent="FlyObjects/Cosmonauts"]
+[node name="Grape_4" type="Sprite" parent="FlyObjects/Grapes"]
 position = Vector2( -39.7278, 1209.82 )
 rotation = 0.692545
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 10 )
 script = ExtResource( 4 )
 
-[node name="NYAN_CAT" parent="FlyObjects" instance=ExtResource( 8 )]
+[node name="Jesus" parent="FlyObjects" instance=ExtResource( 8 )]
 position = Vector2( -50, 270 )
 scale = Vector2( 0.35, 0.35 )
-script = ExtResource( 9 )
+
+[node name="Oranges" type="Node2D" parent="FlyObjects"]
+
+[node name="Orange_1" type="Sprite" parent="FlyObjects/Oranges"]
+position = Vector2( 759.649, 631.337 )
+rotation = 1.24066
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 11 )
+script = ExtResource( 4 )
+
+[node name="Orange_2" type="Sprite" parent="FlyObjects/Oranges"]
+position = Vector2( -45.9988, 581.375 )
+rotation = -0.707714
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 11 )
+script = ExtResource( 4 )
+
+[node name="Orange_3" type="Sprite" parent="FlyObjects/Oranges"]
+position = Vector2( 780.868, 483.316 )
+rotation = 1.50659
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 11 )
+script = ExtResource( 4 )
 
 [node name="rand" type="Node2D" parent="FlyObjects"]
 
-[node name="Voyager" type="Sprite" parent="FlyObjects/rand"]
+[node name="Oil" type="Sprite" parent="FlyObjects/rand"]
 position = Vector2( 639.404, -71.6956 )
 rotation = -0.994993
 texture = ExtResource( 3 )
 script = ExtResource( 4 )
 
-[node name="Sputnik-1" type="Sprite" parent="FlyObjects/rand"]
+[node name="Cross" type="Sprite" parent="FlyObjects/rand"]
 position = Vector2( 190.089, 1322.57 )
 rotation = 2.39139
 scale = Vector2( 0.5, 0.5 )

@@ -16,7 +16,7 @@ func _physics_process(delta):
 	
 	if position.y > 1281:
 		queue_free()
-	if $"../../".score_time >= 17: #MrOlsen MUSIC
+	if $"../../".score_time >= Constants.intro_loop: #MrOlsen MUSIC
 		$AnimatedSprite.play('Rainbow')
 		JUMPER_CAN = true
 		

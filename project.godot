@@ -21,6 +21,10 @@ boot_splash/image="res://Images/V1-Games.png"
 boot_splash/bg_color=Color( 1, 1, 1, 1 )
 config/icon="res://App_icon.png"
 
+[autoload]
+
+Constants="*res://Script/Constants.gd"
+
 [display]
 
 window/size/width=720
