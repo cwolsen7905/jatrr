@@ -11,8 +11,8 @@ var score			= 0
 var score_time		= 0
 var max_score		= 0
 var need_save		= false
-var gamedata 		= 'user://gamedata.save'
-var playernamedata	= 'user://playerdata.save'
+var gamedata 		= 'user://game_data.save'
+var playernamedata	= 'user://player_data.save'
 var playername		= ''
 var CanChangeNick 	= false
 var fs				= File.new()
@@ -29,7 +29,7 @@ var VERSION			= '0.95'
 var response		= 0
 var network			= false
 var ValidName		= false
-var server_addres	= ''
+var server_address = ''
 
 
 func _ready():
@@ -43,7 +43,7 @@ func _ready():
 	playername = fsp.get_as_text()
 	fsp.close()
 	$VersionGet.request("https://allespro.github.io/current-version")
-	$GetServerAddres.request("https://allespro.github.io/rank-server")
+	$GetServerAddres.request("https://jatrr.dev.spherepbx.com/rank-server")
 	get_tree().paused = true
 
 func savename(data):
@@ -72,10 +72,10 @@ func _physics_process(delta):
 		plank.position.x = rand_range(30, 656)
 		$planks.add_child(plank)
 		score_time += 1
-		if (score_time == Constants.intro_loop): #MrOlsen MUSIC
-			$"Start_screen/StartButton/Start_music2".stop()
-		if (score_time == Constants.intro_loop + 1):
-			$GameMusic.play()
+		#if (score_time == Constants.intro_loop): #MrOlsen MUSIC
+		#	$"Start_screen/StartButton/Start_music2".stop()
+		#if (score_time == Constants.intro_loop):
+		#	$GameMusic.play()
 		randomize()
 		spawnhearth = rand_range(0, 24)
 		spawnhearth = round(spawnhearth)
@@ -183,8 +183,7 @@ func send_score(player, score):
 	var d = {"name": player_send, "score": score_send}
 	var query = JSON.print(d)
 	var headers = ["Content-Type: application/json"]
-	#var max_send = str(max_score)
-	$ResultSend.request(server_addres + 'ScriptScore.php', headers, false, HTTPClient.METHOD_POST, query)
+	$ResultSend.request(server_address + 'ScriptScore.php', headers, false, HTTPClient.METHOD_POST, query)
 
 
 func _on_Skip_pressed():
@@ -197,11 +196,11 @@ func _on_ApplyNick_pressed():
 	var nameinput = $NameInput/ColorRect/NikLine.get_text()
 	var passinput = $NameInput/ColorRect/NikPassword.get_text().md5_text()
 	var email = $NameInput/ColorRect/EmailLine.get_text()
-	var d = {"name": nameinput, "password": passinput, "email": email}
+	var d = {"name": nameinput, "email": email}
 	var query = JSON.print(d)
 	var headers = ["Content-Type: application/json"]
 	if(nameinput != ''):
-		$CheckName.request(server_addres + 'CheckName.php', headers, false, HTTPClient.METHOD_POST, query)
+		$CheckName.request(server_address + 'CheckName.php', headers, false, HTTPClient.METHOD_POST, query)
 
 func _on_Change_nick_pressed():
 	$NameInput.show()
@@ -222,6 +221,13 @@ func _on_CheckName_request_completed(result, response_code, headers, body):
 
 func _on_GetServerAddres_request_completed(result, response_code, headers, body):
 	if (response_code == 200):
-		server_addres = body.get_string_from_utf8().replace('\n', '')
+		server_address = body.get_string_from_utf8().replace('\n', '')
 	else:
-		server_addres = 'https://globalbit.ru/FabenialJump/'
+		server_address = 'https://jatrr.dev.spherepbx.com/'
+	server_address = 'https://jatrr.dev.spherepbx.com/'
+
+
+func _on_Start_music2_finished():
+	print_debug("music finished")
+	Constants.intro_done = 1
+	$GameMusic.play()

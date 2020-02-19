@@ -7,7 +7,7 @@ var fs = File.new()
 var max_score = 0
 
 func _ready():
-	$GetLeaders.request($"../".server_addres + "Leaders")
+	$GetLeaders.request($"../".server_address + "Leaders")
 
 func _print_list():
 	$BlackBack/List.text = list

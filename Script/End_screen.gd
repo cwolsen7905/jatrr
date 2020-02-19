@@ -3,7 +3,7 @@ extends Control
 func check_network():
 	$ColorRect/ShareResult.text = ''
 	
-	$"../VersionGet".request($"../".server_addres + "HighScore")
+	$"../VersionGet".request($"../".server_address + "HighScore")
 	var t = Timer.new() 
 	t.set_wait_time(0.4) 
 	add_child(t)

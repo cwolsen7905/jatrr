@@ -17,7 +17,6 @@ var vel = Vector2()
 func _ready():
 	$"../../End_screen/ColorRect/ShareResult".text = ''
 	$"../../".response = 0
-	print (global_position.x)
 	$"../../GUI/Health".set_value(LIFES)
 	if (LIFES != 4):
 		need_health = true
