@@ -262,7 +262,7 @@ size = 40
 font_data = ExtResource( 21 )
 
 [sub_resource type="DynamicFont" id=52]
-size = 25
+size = 40
 use_filter = true
 font_data = ExtResource( 38 )
 
@@ -1018,16 +1018,14 @@ __meta__ = {
 }
 
 [node name="ApplyNick" type="TextureButton" parent="NameInput/ColorRect"]
-margin_left = 170.0
-margin_top = 960.0
-margin_right = 540.0
-margin_bottom = 1030.0
+margin_left = 172.355
+margin_top = 835.159
+margin_right = 542.355
+margin_bottom = 905.159
 
 [node name="Label" type="Label" parent="NameInput/ColorRect/ApplyNick"]
-margin_left = 20.0
-margin_top = -106.0
-margin_right = 348.0
-margin_bottom = -56.0
+margin_right = 370.0
+margin_bottom = 70.0
 custom_fonts/font = SubResource( 51 )
 custom_colors/font_color = Color( 0.78125, 0, 0.65918, 1 )
 text = "Confirm"
@@ -1035,16 +1033,14 @@ align = 1
 valign = 1
 
 [node name="Skip" type="TextureButton" parent="NameInput/ColorRect"]
-margin_left = 260.0
-margin_top = 1190.0
-margin_right = 470.0
-margin_bottom = 1230.0
+margin_left = 172.0
+margin_top = 938.338
+margin_right = 531.289
+margin_bottom = 1053.34
 
 [node name="Label" type="Label" parent="NameInput/ColorRect/Skip"]
-margin_left = 10.0
-margin_top = -258.0
-margin_right = 196.0
-margin_bottom = -203.0
+margin_right = 370.0
+margin_bottom = 50.0
 custom_fonts/font = SubResource( 52 )
 custom_colors/font_color = Color( 0.78125, 0, 0.65918, 1 )
 text = "Skip"
@@ -1052,10 +1048,10 @@ align = 1
 valign = 1
 
 [node name="Label2" type="Label" parent="NameInput/ColorRect/Skip"]
-margin_left = -20.0
-margin_top = 40.0
-margin_right = 222.0
-margin_bottom = 59.0
+margin_left = 60.0869
+margin_top = 70.6215
+margin_right = 302.087
+margin_bottom = 89.6215
 custom_fonts/font = SubResource( 53 )
 custom_colors/font_color = Color( 0.78125, 0, 0.65918, 1 )
 text = "Nick change will be possible"

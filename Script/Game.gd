@@ -121,7 +121,9 @@ func _on_Resume_pressed():
 	$Pause_screen.hide()
 	get_tree().paused = false
 	
-func _on_Retry_pressed():
+func _on_Retry_pressed(): #Retry MrOlsen
+	Constants.intro_done = 0
+	$GameMusic.stop()
 	$Player/PlayerBody.life = true
 	RECORD = ''
 	AnimRecord = false
