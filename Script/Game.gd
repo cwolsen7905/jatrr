@@ -112,8 +112,6 @@ func _on_Exit_pressed():
 	get_tree().quit()
 
 func _on_PauseButton_pressed():
-	if ($GameMusic/GameMusic.is_playing() == true):
-		$GameMusic/GameMusic.stop()
 	get_tree().paused = true
 	$Pause_screen.show()
 
@@ -123,8 +121,9 @@ func _on_Resume_pressed():
 	
 func _on_Retry_pressed(): #Retry MrOlsen
 	Constants.intro_done = 0
-	$GameMusic.stop()
+	
 	$Player/PlayerBody.life = true
+	
 	RECORD = ''
 	AnimRecord = false
 	if (need_save == true):
@@ -143,8 +142,12 @@ func _on_Retry_pressed(): #Retry MrOlsen
 		i.queue_free()
 	GAME = true
 	get_tree().paused = false
+	
 	$Start_screen/StartButton/Start_music2/StartSound.seek(0)
 	$Start_screen/StartButton/Start_music2/StartSound.play('soundstart')
+	$GameMusic.stop()
+	
+	Constants.intro_done = 0
 
 func _on_BackFromAboutMe_pressed():
 	$Pause_screen/Buttons.show()
@@ -170,6 +173,7 @@ func _on_VersionGet_request_completed(result, response_code, headers, body):
 			CanChangeNick = true
 			$Pause_screen/Buttons/Change_nick.show()
 		elif(playername != ''):
+			$Pause_screen/Buttons/Change_nick.show()
 			pass
 		else:
 			CanChangeNick = true
