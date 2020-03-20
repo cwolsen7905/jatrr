@@ -3,7 +3,7 @@ extends Control
 func check_network():
 	$ColorRect/ShareResult.text = ''
 	
-	$"../VersionGet".request($"../".server_address + "HighScore")
+	$"../VersionGet".request(Constants.serverAddress + "HighScore")
 	var t = Timer.new() 
 	t.set_wait_time(0.4) 
 	add_child(t)
@@ -18,5 +18,5 @@ func check_network():
 
 func _on_Highscore_pressed():
 	self.hide()
-	$"../Leaders"._ready()
+	$"../Leaders".update()
 	$"../Leaders".show()

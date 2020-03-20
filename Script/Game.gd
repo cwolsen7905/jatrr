@@ -24,7 +24,9 @@ var AnimRecord		= false
 var on_floor		= false
 var planke			= preload("res://Scenes/Plank.tscn")
 var hearthe			= preload("res://Scenes/Health.tscn")
+var robe_tscn		= preload("res://Scenes/Robe.tscn")
 var spawnhearth		= 0
+var spawn_robe		= 0
 var VERSION			= '0.95'
 var response		= 0
 var network			= false
@@ -42,7 +44,7 @@ func _ready():
 	fsp.open(playernamedata, File.READ)
 	playername = fsp.get_as_text()
 	fsp.close()
-	$VersionGet.request("https://allespro.github.io/current-version")
+	$VersionGet.request("https://jatrr.dev.spherepbx.com/current-version")
 	$GetServerAddres.request("https://jatrr.dev.spherepbx.com/rank-server")
 	get_tree().paused = true
 
@@ -81,11 +83,13 @@ func _physics_process(delta):
 		spawnhearth = round(spawnhearth)
 		if (score_time > 34 && spawnhearth == 0): #MrOlsen Music
 			var hearth = hearthe.instance()
+			var robe = robe_tscn.instance()
 			randomize()
 			hearth.position.y = screenW - rand_range(1280, 1380)
 			randomize()
 			hearth.position.x = rand_range(30, 676)#30
 			$hearths.add_child(hearth)
+			$hearths.add_child(robe)
 		timer = 0
 		
 	$GUI/score.text = 'Score: ' + str(score) + RECORD
@@ -143,8 +147,8 @@ func _on_Retry_pressed(): #Retry MrOlsen
 	GAME = true
 	get_tree().paused = false
 	
-	$Start_screen/StartButton/Start_music2/StartSound.seek(0)
-	$Start_screen/StartButton/Start_music2/StartSound.play('soundstart')
+	$Start_screen/StartButton/Start_music2.play(0)
+	#$Start_screen/StartButton/Start_music2/StartSound.play('soundstart')
 	$GameMusic.stop()
 	
 	Constants.intro_done = 0
@@ -165,7 +169,7 @@ func _on_Settings_pressed():
 	$Pause_screen/Buttons.hide()
 	$Pause_screen/Settings.show()
 
-func _on_VersionGet_request_completed(result, response_code, headers, body):
+func _on_VersionGet_request_completed(result, response_code, _headers, body):
 	if (result == HTTPRequest.RESULT_SUCCESS):
 		response = response_code
 		CURRENT_VERSION = body.get_string_from_utf8()
@@ -183,13 +187,13 @@ func _on_VersionGet_request_completed(result, response_code, headers, body):
 			network = true
 			$Start_screen/ColorRect/New_version.show()
 
-func send_score(player, score):
+func send_score(player, new_score):
 	var player_send = str(player)
-	var score_send = str(score)
+	var score_send = str(new_score)
 	var d = {"name": player_send, "score": score_send}
 	var query = JSON.print(d)
 	var headers = ["Content-Type: application/json"]
-	$ResultSend.request(server_address + 'ScriptScore.php', headers, false, HTTPClient.METHOD_POST, query)
+	$ResultSend.request(Constants.serverAddress + 'ScriptScore.php', headers, false, HTTPClient.METHOD_POST, query)
 
 
 func _on_Skip_pressed():
@@ -205,12 +209,12 @@ func _on_ApplyNick_pressed():
 	var query = JSON.print(d)
 	var headers = ["Content-Type: application/json"]
 	if(nameinput != ''):
-		$CheckName.request(server_address + 'CheckName.php', headers, false, HTTPClient.METHOD_POST, query)
+		$CheckName.request(Constants.serverAddress + 'CheckName.php', headers, false, HTTPClient.METHOD_POST, query)
 
 func _on_Change_nick_pressed():
 	$NameInput.show()
 
-func _on_CheckName_request_completed(result, response_code, headers, body):
+func _on_CheckName_request_completed(_result, _response_code, _headers, body):
 	var Valid = body.get_string_from_utf8()
 	var nameinput = $NameInput/ColorRect/NikLine.get_text()
 	if(Valid  == "false\n"):
@@ -224,12 +228,12 @@ func _on_CheckName_request_completed(result, response_code, headers, body):
 		$Pause_screen/Buttons/Change_nick.hide()
 		$NameInput.hide()
 
-func _on_GetServerAddres_request_completed(result, response_code, headers, body):
+func _on_GetServerAddres_request_completed(_result, response_code, _headers, body):
 	if (response_code == 200):
-		server_address = body.get_string_from_utf8().replace('\n', '')
+		Constants.serverAddress = body.get_string_from_utf8().replace('\n', '')
 	else:
-		server_address = 'https://jatrr.dev.spherepbx.com/'
-	server_address = 'https://jatrr.dev.spherepbx.com/'
+		Constants.serverAddress = 'https://jatrr.dev.spherepbx.com/'
+	Constants.serverAddress = 'https://jatrr.dev.spherepbx.com/'
 
 
 func _on_Start_music2_finished():

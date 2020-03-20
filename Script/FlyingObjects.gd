@@ -12,7 +12,7 @@ func _ready():
 	POSX = rand_range(1, 2)
 	POSY = rand_range(1, 2)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	#if ($"../../../".score_time > Constants.intro_loop): #MrOlsen - Music Always 1 More Than the Rest
 	if (Constants.intro_done == 1):
 		if position.x > 800:

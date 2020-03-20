@@ -6,3 +6,5 @@ var intro_loop = 16
 var jesus_start = 18
 
 var intro_done = 0
+
+var serverAddress = ""

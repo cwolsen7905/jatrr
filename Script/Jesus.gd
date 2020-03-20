@@ -13,7 +13,7 @@ func _ready():
 	POSX = rand_range(1, 2)
 	POSY = rand_range(1, 2)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 
 #2020-01-17 MrOlsen: this is the original	if ($"../../".score_time > 37):
 	if ($"../../".score_time > 37):
