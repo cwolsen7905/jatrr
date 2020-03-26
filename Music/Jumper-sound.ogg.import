@@ -11,5 +11,5 @@ dest_files=[ "res://.import/Jumper-sound.ogg-eda5dc4653336b9c5f26de3f1b54de2a.og
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
