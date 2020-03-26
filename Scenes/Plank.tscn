@@ -18,15 +18,15 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 17 ), ExtResource( 19 ), ExtResource( 26 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 27 ), ExtResource( 20 ), ExtResource( 25 ), ExtResource( 21 ), ExtResource( 22 ) ],
-"loop": true,
-"name": "Rainbow",
-"speed": 6.0
-}, {
 "frames": [ ExtResource( 18 ) ],
 "loop": true,
 "name": "Idle",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 19 ), ExtResource( 26 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 27 ), ExtResource( 20 ), ExtResource( 25 ), ExtResource( 21 ), ExtResource( 22 ) ],
+"loop": true,
+"name": "Rainbow",
+"speed": 6.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]

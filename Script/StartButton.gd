@@ -10,5 +10,5 @@ func _on_StartButton_pressed():
 	$"../../GUI/TouchScreen/TouchHintLeft".play()
 	$"../../GUI/TouchScreen/TouchHintRight".play()
 	get_tree().paused = false
-	$Start_music2/StartSound.seek(0)
-	$Start_music2/StartSound.play('soundstart')
+	$Start_music2.play(0)
+#	$Start_music2/StartSound.play('soundstart')

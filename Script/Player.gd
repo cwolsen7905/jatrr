@@ -13,6 +13,9 @@ var protcettimer = 0
 var life = true
 var transparent = 1
 var vel = Vector2()
+var anim_last = ""
+
+onready var sprite = get_node("AnimatedSprite")
 
 func _ready():
 	$"../../End_screen/ColorRect/ShareResult".text = ''
@@ -37,7 +40,6 @@ func _physics_process(delta):
 		vel.y = -JUMP;
 		JUMP = 700
 		$"../../".on_floor = true
-		#$"../../".score = $"../../".score + 1
 	else:
 		$"../../".on_floor = false
 		
@@ -54,7 +56,8 @@ func _physics_process(delta):
 	if (position.y > 480 || LIFES == 0):
 		#print ('fail')
 		$"../../End_screen".check_network()
-		$"../../".send_score($"../../".playername, $"../../".score)
+		$"../../".send_score($"../../".playername, Constants.score)
+		#$"../../".playername, $"../../".score)
 		LIFES = 4
 		$"../../GUI/Health".set_value(LIFES)
 		if($"../../".AnimRecord == true):
@@ -69,6 +72,7 @@ func _physics_process(delta):
 		$"../../Start_screen/StartButton/Start_music2".stop()
 		$"../../GameMusic".stop()
 		$"../../GUI".hide()
+		Constants.robe_active = false
 	
 	if (protected == true):
 		protcettimer += delta
@@ -81,6 +85,17 @@ func _physics_process(delta):
 	if(protected == false && transparent < 1):
 		transparent += delta
 		$Sprite.modulate = Color(1, 1, 1, transparent)
+	var anim = ""
+	if (Constants.robe_active == false):
+		anim = "idle"
+	elif (vel.x == 0):
+		anim = "wr_idle"
+	else:
+		anim = "wr_falling"
+	if (anim != anim_last):
+		sprite.play(anim)
+		anim_last = anim
+
 
 func _on_JumpArea2D_area_entered(area):
 	var groups = area.get_groups()
@@ -93,6 +108,10 @@ func _on_PlayerArea2D_area_entered(area):
 	if(getgroups.has("bad") && protected == false):
 		need_health = true
 		LIFES -= 1
+		Constants.robe_active = false
+		Constants.robe_spawned = false
+		$"../../GameMusic2".stop()
+		$"../../GameMusic".play()
 		$"../../GUI/Health".set_value(LIFES)
 		protected = true
 		randomize()

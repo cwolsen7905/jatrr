@@ -7,19 +7,26 @@ var CAN_JUMPER_CAN = true
 var OBJ_UNHIDE
 var HAS_PLAYER = false
 
+var last_state
+
 func _physics_process(delta):
 	position.y += SPEED
 	
-	if $"../../".score > SPEED_LEVEL:
+	#if $"../../".score > SPEED_LEVEL:
+	if Constants.score > SPEED_LEVEL:
 		SPEED += 0.0005
 		SPEED_LEVEL += 1
 	
 	if position.y > 1281:
 		queue_free()
-	#if $"../../".score_time >= Constants.intro_loop: #MrOlsen MUSIC
-	if Constants.intro_done == 1:
-		$AnimatedSprite.play('Rainbow')
-		JUMPER_CAN = true
+	if (last_state != Constants.robe_active):
+		if Constants.robe_active == true:
+			$AnimatedSprite.play('Rainbow')
+			JUMPER_CAN = true
+			last_state = true
+		else:
+			$AnimatedSprite.play('Idle')
+			last_state = false
 		
 		if(JUMPER_CAN == true && CAN_JUMPER_CAN == true && delta > 0.01):
 			randomize()
@@ -33,8 +40,6 @@ func _physics_process(delta):
 				$Illuminati.show()
 				$Illuminati/Sprite/KillArea.add_to_group("bad")
 		
-
-
 func _on_Area2D_area_entered(area):
 	var groups = area.get_groups()
 	if (groups.has("player")):
@@ -42,5 +47,4 @@ func _on_Area2D_area_entered(area):
 	else:
 		HAS_PLAYER = false
 	if ($"../../Player/PlayerBody".is_on_floor()):
-		$"../../".score = $"../../".score + 1
-		
+		Constants.score += 1

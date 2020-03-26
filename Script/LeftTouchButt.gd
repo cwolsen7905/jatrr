@@ -1,6 +1,6 @@
 extends TextureButton
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if($"../../../".GAME == false):
 		Input.action_release("ui_left")
 

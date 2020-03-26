@@ -5,10 +5,12 @@ const SPEED 	= 120
 var back_size
 var CURRENT_VERSION
 
+#Robe Vars
+var robe_tscn		= preload("res://Scenes/Robe.tscn")
+var robe_spawn		= 0
+
 var screenW			= 0
 var timer			= 0
-var score			= 0
-var score_time		= 0
 var max_score		= 0
 var need_save		= false
 var gamedata 		= 'user://game_data.save'
@@ -24,13 +26,14 @@ var AnimRecord		= false
 var on_floor		= false
 var planke			= preload("res://Scenes/Plank.tscn")
 var hearthe			= preload("res://Scenes/Health.tscn")
+
 var spawnhearth		= 0
+
 var VERSION			= '0.95'
 var response		= 0
 var network			= false
 var ValidName		= false
 var server_address = ''
-
 
 func _ready():
 	$Pause_screen/VersionLabel.text = 'Version' + VERSION
@@ -42,7 +45,7 @@ func _ready():
 	fsp.open(playernamedata, File.READ)
 	playername = fsp.get_as_text()
 	fsp.close()
-	$VersionGet.request("https://allespro.github.io/current-version")
+	$VersionGet.request("https://jatrr.dev.spherepbx.com/current-version")
 	$GetServerAddres.request("https://jatrr.dev.spherepbx.com/rank-server")
 	get_tree().paused = true
 
@@ -53,7 +56,7 @@ func savename(data):
 
 func savegame():
 	fs.open(gamedata, File.WRITE)
-	fs.store_64(score)
+	fs.store_64(Constants.score)
 	fs.close()
 
 func _physics_process(delta):
@@ -71,40 +74,54 @@ func _physics_process(delta):
 		randomize()
 		plank.position.x = rand_range(30, 656)
 		$planks.add_child(plank)
-		score_time += 1
-		#if (score_time == Constants.intro_loop): #MrOlsen MUSIC
-		#	$"Start_screen/StartButton/Start_music2".stop()
-		#if (score_time == Constants.intro_loop):
-		#	$GameMusic.play()
-		randomize()
-		spawnhearth = rand_range(0, 24)
-		spawnhearth = round(spawnhearth)
-		if (score_time > 34 && spawnhearth == 0): #MrOlsen Music
-			var hearth = hearthe.instance()
+		Constants.score_time += 1
+			
+		if (Constants.intro_done == 1 && Constants.robe_active == false && Constants.robe_spawned == false):
+			if  (Constants.robe_spawned == false && robe_spawn < Constants.score_time):
+				randomize()
+				robe_spawn = rand_range(1, 5)
+				robe_spawn = round(robe_spawn) + Constants.score_time
+			elif (robe_spawn <= Constants.score_time):
+				var robe = robe_tscn.instance()
+				randomize()
+				robe.position.y = screenW - rand_range(1280, 1380)
+				randomize()
+				robe.position.x = rand_range(30, 676)
+				$hearths.add_child(robe)
+				Constants.robe_spawned = true
+		#else:
+		#	print_debug("ID: " + str(Constants.intro_done) + ", RA: " + str(Constants.robe_active) + "RS: " + str(Constants.robe_spawned) + "ST: " + str(score_time) + ", RST: " + str(robe_spawn))
+				
+		if (Constants.score_time > 34):
 			randomize()
-			hearth.position.y = screenW - rand_range(1280, 1380)
-			randomize()
-			hearth.position.x = rand_range(30, 676)#30
-			$hearths.add_child(hearth)
+			spawnhearth = rand_range(0, 24)
+			spawnhearth = round(spawnhearth)
+			if (spawnhearth == 0): #MrOlsen Music
+				var hearth = hearthe.instance()
+				randomize()
+				hearth.position.y = screenW - rand_range(1280, 1380)
+				randomize()
+				hearth.position.x = rand_range(30, 676)#30
+				$hearths.add_child(hearth)
 		timer = 0
 		
-	$GUI/score.text = 'Score: ' + str(score) + RECORD
+	$GUI/score.text = 'Score: ' + str(Constants.score) + RECORD
 	
-	$End_screen/ColorRect/your_score.text = 'Your Score: ' + str(score)
+	$End_screen/ColorRect/your_score.text = 'Your Score: ' + str(Constants.score)
 	
-	if (max_score < score):
+	if (max_score < Constants.score):
 		RECORD = '!'
 		AnimRecord = true
 		
-	if (max_score > score):
+	if (max_score > Constants.score):
 		need_save = false
 		
 		$End_screen/ColorRect/max_score.text = 'Max Score: ' + str(max_score)
 	else:
 		need_save = true
 		
-		$End_screen/ColorRect/max_score.text = 'Max Score: ' + str(score)
-		max_score = score
+		$End_screen/ColorRect/max_score.text = 'Max Score: ' + str(Constants.score)
+		max_score = Constants.score
 
 func _on_Exit_pressed():
 	if (need_save == true):
@@ -112,8 +129,6 @@ func _on_Exit_pressed():
 	get_tree().quit()
 
 func _on_PauseButton_pressed():
-	if ($GameMusic/GameMusic.is_playing() == true):
-		$GameMusic/GameMusic.stop()
 	get_tree().paused = true
 	$Pause_screen.show()
 
@@ -123,15 +138,17 @@ func _on_Resume_pressed():
 	
 func _on_Retry_pressed(): #Retry MrOlsen
 	Constants.intro_done = 0
-	$GameMusic.stop()
+	Constants.robe_active = false
+	
 	$Player/PlayerBody.life = true
+	
 	RECORD = ''
 	AnimRecord = false
 	if (need_save == true):
 		savegame()
 	SAVE = 0
-	score_time = 0
-	score = 0
+	Constants.score_time = 0
+	Constants.score = 0
 	$End_screen.hide()
 	$GUI.show()
 	$StartPlank.timer=0
@@ -143,8 +160,13 @@ func _on_Retry_pressed(): #Retry MrOlsen
 		i.queue_free()
 	GAME = true
 	get_tree().paused = false
-	$Start_screen/StartButton/Start_music2/StartSound.seek(0)
-	$Start_screen/StartButton/Start_music2/StartSound.play('soundstart')
+	
+	$Start_screen/StartButton/Start_music2.play(0)
+	#$Start_screen/StartButton/Start_music2/StartSound.play('soundstart')
+	$GameMusic.stop()
+	$GameMusic2.stop()
+	
+	Constants.intro_done = 0
 
 func _on_BackFromAboutMe_pressed():
 	$Pause_screen/Buttons.show()
@@ -162,7 +184,7 @@ func _on_Settings_pressed():
 	$Pause_screen/Buttons.hide()
 	$Pause_screen/Settings.show()
 
-func _on_VersionGet_request_completed(result, response_code, headers, body):
+func _on_VersionGet_request_completed(result, response_code, _headers, body):
 	if (result == HTTPRequest.RESULT_SUCCESS):
 		response = response_code
 		CURRENT_VERSION = body.get_string_from_utf8()
@@ -170,6 +192,7 @@ func _on_VersionGet_request_completed(result, response_code, headers, body):
 			CanChangeNick = true
 			$Pause_screen/Buttons/Change_nick.show()
 		elif(playername != ''):
+			$Pause_screen/Buttons/Change_nick.show()
 			pass
 		else:
 			CanChangeNick = true
@@ -179,13 +202,13 @@ func _on_VersionGet_request_completed(result, response_code, headers, body):
 			network = true
 			$Start_screen/ColorRect/New_version.show()
 
-func send_score(player, score):
+func send_score(player, new_score):
 	var player_send = str(player)
-	var score_send = str(score)
+	var score_send = str(new_score)
 	var d = {"name": player_send, "score": score_send}
 	var query = JSON.print(d)
 	var headers = ["Content-Type: application/json"]
-	$ResultSend.request(server_address + 'ScriptScore.php', headers, false, HTTPClient.METHOD_POST, query)
+	$ResultSend.request(Constants.serverAddress + 'ScriptScore.php', headers, false, HTTPClient.METHOD_POST, query)
 
 
 func _on_Skip_pressed():
@@ -201,12 +224,12 @@ func _on_ApplyNick_pressed():
 	var query = JSON.print(d)
 	var headers = ["Content-Type: application/json"]
 	if(nameinput != ''):
-		$CheckName.request(server_address + 'CheckName.php', headers, false, HTTPClient.METHOD_POST, query)
+		$CheckName.request(Constants.serverAddress + 'CheckName.php', headers, false, HTTPClient.METHOD_POST, query)
 
 func _on_Change_nick_pressed():
 	$NameInput.show()
 
-func _on_CheckName_request_completed(result, response_code, headers, body):
+func _on_CheckName_request_completed(_result, _response_code, _headers, body):
 	var Valid = body.get_string_from_utf8()
 	var nameinput = $NameInput/ColorRect/NikLine.get_text()
 	if(Valid  == "false\n"):
@@ -220,15 +243,14 @@ func _on_CheckName_request_completed(result, response_code, headers, body):
 		$Pause_screen/Buttons/Change_nick.hide()
 		$NameInput.hide()
 
-func _on_GetServerAddres_request_completed(result, response_code, headers, body):
+func _on_GetServerAddres_request_completed(_result, response_code, _headers, body):
 	if (response_code == 200):
-		server_address = body.get_string_from_utf8().replace('\n', '')
+		Constants.serverAddress = body.get_string_from_utf8().replace('\n', '')
 	else:
-		server_address = 'https://jatrr.dev.spherepbx.com/'
-	server_address = 'https://jatrr.dev.spherepbx.com/'
+		Constants.serverAddress = 'https://jatrr.dev.spherepbx.com/'
+	Constants.serverAddress = 'https://jatrr.dev.spherepbx.com/'
 
 
 func _on_Start_music2_finished():
-	print_debug("music finished")
 	Constants.intro_done = 1
 	$GameMusic.play()
