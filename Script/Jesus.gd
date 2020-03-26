@@ -14,9 +14,7 @@ func _ready():
 	POSY = rand_range(1, 2)
 
 func _physics_process(_delta):
-
-#2020-01-17 MrOlsen: this is the original	if ($"../../".score_time > 37):
-	if ($"../../".score_time > 37):
+	if (Constants.robe_active == true):
 		if position.x > 800:
 			POSX = -POSX
 		if position.x < -100:
@@ -28,5 +26,5 @@ func _physics_process(_delta):
 		position.x += POSX
 		position.y += POSY
 		rotation += ROT
-	if ($"../../".GAME == false):
+	if (($"../../".GAME == false || Constants.robe_active == false) && position != START_POSITON):
 		position = START_POSITON

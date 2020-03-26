@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=2]
+[gd_scene load_steps=121 format=2]
 
 [ext_resource path="res://Script/Game.gd" type="Script" id=1]
 [ext_resource path="res://Images/Back/back.jpg" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://App_icon.png" type="Texture" id=6]
 [ext_resource path="res://Images/FlyObj/Banana.png" type="Texture" id=7]
 [ext_resource path="res://Scenes/Jesus.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Music/v1GAMEYGAME_01.ogg" type="AudioStream" id=9]
 [ext_resource path="res://Images/FlyObj/Grape.png" type="Texture" id=10]
 [ext_resource path="res://Images/FlyObj/Orange.png" type="Texture" id=11]
 [ext_resource path="res://Images/FlyObj/Cross.png" type="Texture" id=12]
@@ -39,6 +40,60 @@
 [ext_resource path="res://Fonts/montserrat_alt/MontserratAlternates-Bold.otf" type="DynamicFontData" id=38]
 [ext_resource path="res://Script/Leaders.gd" type="Script" id=39]
 [ext_resource path="res://Music/mix 2 for joseph  no intro_01.ogg" type="AudioStream" id=40]
+[ext_resource path="res://Music/Mario-coin-sound.ogg" type="AudioStream" id=41]
+
+[sub_resource type="RectangleShape2D" id=63]
+extents = Vector2( 28.0059, 24.9492 )
+
+[sub_resource type="RectangleShape2D" id=64]
+extents = Vector2( 32.0422, 25.4982 )
+
+[sub_resource type="RectangleShape2D" id=65]
+extents = Vector2( 36.968, 27.9526 )
+
+[sub_resource type="RectangleShape2D" id=66]
+extents = Vector2( 34.5488, 27.5747 )
+
+[sub_resource type="RectangleShape2D" id=67]
+extents = Vector2( 34.7421, 26.1022 )
+
+[sub_resource type="RectangleShape2D" id=62]
+extents = Vector2( 29.1705, 10 )
+
+[sub_resource type="RectangleShape2D" id=68]
+extents = Vector2( 27.6373, 10 )
+
+[sub_resource type="RectangleShape2D" id=69]
+extents = Vector2( 36.371, 10 )
+
+[sub_resource type="RectangleShape2D" id=70]
+extents = Vector2( 30.9335, 12.7683 )
+
+[sub_resource type="RectangleShape2D" id=71]
+
+[sub_resource type="RectangleShape2D" id=72]
+extents = Vector2( 31.0187, 25.345 )
+
+[sub_resource type="RectangleShape2D" id=73]
+extents = Vector2( 24.9609, 30.5367 )
+
+[sub_resource type="RectangleShape2D" id=74]
+extents = Vector2( 24.0502, 29.9612 )
+
+[sub_resource type="RectangleShape2D" id=75]
+extents = Vector2( 39.1001, 25.4653 )
+
+[sub_resource type="RectangleShape2D" id=76]
+extents = Vector2( 34.8569, 25.05 )
+
+[sub_resource type="RectangleShape2D" id=77]
+extents = Vector2( 34.7804, 22.5574 )
+
+[sub_resource type="RectangleShape2D" id=78]
+extents = Vector2( 23.3606, 32.6039 )
+
+[sub_resource type="RectangleShape2D" id=79]
+extents = Vector2( 26.6917, 95.1396 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 56.6897, 14.9122 )
@@ -317,6 +372,26 @@ tracks/0/keys = {
 } ]
 }
 
+[sub_resource type="Animation" id=61]
+length = 15.0
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "play"
+}, {
+"args": [  ],
+"method": "stop"
+} ]
+}
+
 [node name="Game" type="Node"]
 script = ExtResource( 1 )
 
@@ -343,12 +418,22 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 script = ExtResource( 4 )
 
+[node name="Area2D" type="Area2D" parent="FlyObjects/Apples/Apple_1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlyObjects/Apples/Apple_1/Area2D"]
+shape = SubResource( 63 )
+
 [node name="Apple_2" type="Sprite" parent="FlyObjects/Apples"]
 position = Vector2( -67.4016, 821.92 )
 rotation = -2.05014
 scale = Vector2( 0.55, 0.55 )
 texture = ExtResource( 5 )
 script = ExtResource( 4 )
+
+[node name="Area2D" type="Area2D" parent="FlyObjects/Apples/Apple_2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlyObjects/Apples/Apple_2/Area2D"]
+shape = SubResource( 64 )
 
 [node name="Apple_3" type="Sprite" parent="FlyObjects/Apples"]
 position = Vector2( 810.054, 68.866 )
@@ -357,6 +442,11 @@ scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 5 )
 script = ExtResource( 4 )
 
+[node name="Area2D" type="Area2D" parent="FlyObjects/Apples/Apple_3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlyObjects/Apples/Apple_3/Area2D"]
+shape = SubResource( 65 )
+
 [node name="Apple_4" type="Sprite" parent="FlyObjects/Apples"]
 position = Vector2( 791.331, 563.708 )
 rotation = -1.20402
@@ -364,12 +454,22 @@ scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 5 )
 script = ExtResource( 4 )
 
+[node name="Area2D" type="Area2D" parent="FlyObjects/Apples/Apple_4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlyObjects/Apples/Apple_4/Area2D"]
+shape = SubResource( 66 )
+
 [node name="Apple_5" type="Sprite" parent="FlyObjects/Apples"]
 position = Vector2( -90.1346, 103.695 )
 rotation = 0.799584
 scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 5 )
 script = ExtResource( 4 )
+
+[node name="Area2D" type="Area2D" parent="FlyObjects/Apples/Apple_5"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlyObjects/Apples/Apple_5/Area2D"]
+shape = SubResource( 67 )
 
 [node name="Bananas" type="Node2D" parent="FlyObjects"]
 
@@ -380,12 +480,24 @@ scale = Vector2( -0.7, 0.7 )
 texture = ExtResource( 7 )
 script = ExtResource( 4 )
 
+[node name="Area2D" type="Area2D" parent="FlyObjects/Bananas/Banana_1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlyObjects/Bananas/Banana_1/Area2D"]
+position = Vector2( -0.0842285, 3.32266 )
+shape = SubResource( 62 )
+
 [node name="Banana_2" type="Sprite" parent="FlyObjects/Bananas"]
 position = Vector2( -54.3043, 415.951 )
 rotation = -0.887721
 scale = Vector2( -0.9, 0.9 )
 texture = ExtResource( 7 )
 script = ExtResource( 4 )
+
+[node name="Area2D" type="Area2D" parent="FlyObjects/Bananas/Banana_2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlyObjects/Bananas/Banana_2/Area2D"]
+position = Vector2( 3.85687, 6.36624 )
+shape = SubResource( 68 )
 
 [node name="Banana_3" type="Sprite" parent="FlyObjects/Bananas"]
 position = Vector2( 367.832, -59.0889 )
@@ -394,12 +506,24 @@ scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 7 )
 script = ExtResource( 4 )
 
+[node name="Area2D" type="Area2D" parent="FlyObjects/Bananas/Banana_3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlyObjects/Bananas/Banana_3/Area2D"]
+position = Vector2( 2.34299, 6.93472 )
+shape = SubResource( 69 )
+
 [node name="Banana_4" type="Sprite" parent="FlyObjects/Bananas"]
 position = Vector2( 771.521, 841.894 )
 rotation = 1.69135
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 7 )
 script = ExtResource( 4 )
+
+[node name="Area2D" type="Area2D" parent="FlyObjects/Bananas/Banana_4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlyObjects/Bananas/Banana_4/Area2D"]
+position = Vector2( 1.34863, 6.1604 )
+shape = SubResource( 70 )
 
 [node name="Grapes" type="Node2D" parent="FlyObjects"]
 
@@ -410,12 +534,22 @@ scale = Vector2( -0.269231, 0.260942 )
 texture = ExtResource( 6 )
 script = ExtResource( 4 )
 
+[node name="Area2D" type="Area2D" parent="FlyObjects/Grapes/Grape_1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlyObjects/Grapes/Grape_1/Area2D"]
+shape = SubResource( 71 )
+
 [node name="Grape_2" type="Sprite" parent="FlyObjects/Grapes"]
 position = Vector2( 104.408, -40.3945 )
 rotation = 1.5587
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 10 )
 script = ExtResource( 4 )
+
+[node name="Area2D" type="Area2D" parent="FlyObjects/Grapes/Grape_2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlyObjects/Grapes/Grape_2/Area2D"]
+shape = SubResource( 72 )
 
 [node name="Grape_3" type="Sprite" parent="FlyObjects/Grapes"]
 position = Vector2( 774.3, 195.34 )
@@ -424,12 +558,22 @@ scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 10 )
 script = ExtResource( 4 )
 
+[node name="Area2D" type="Area2D" parent="FlyObjects/Grapes/Grape_3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlyObjects/Grapes/Grape_3/Area2D"]
+shape = SubResource( 73 )
+
 [node name="Grape_4" type="Sprite" parent="FlyObjects/Grapes"]
 position = Vector2( -39.7278, 1209.82 )
 rotation = 0.692545
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 10 )
 script = ExtResource( 4 )
+
+[node name="Area2D" type="Area2D" parent="FlyObjects/Grapes/Grape_4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlyObjects/Grapes/Grape_4/Area2D"]
+shape = SubResource( 74 )
 
 [node name="Jesus" parent="FlyObjects" instance=ExtResource( 8 )]
 position = Vector2( -50, 270 )
@@ -444,6 +588,11 @@ scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 11 )
 script = ExtResource( 4 )
 
+[node name="Area2D" type="Area2D" parent="FlyObjects/Oranges/Orange_1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlyObjects/Oranges/Orange_1/Area2D"]
+shape = SubResource( 75 )
+
 [node name="Orange_2" type="Sprite" parent="FlyObjects/Oranges"]
 position = Vector2( -45.9988, 581.375 )
 rotation = -0.707714
@@ -451,12 +600,23 @@ scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 11 )
 script = ExtResource( 4 )
 
+[node name="Area2D" type="Area2D" parent="FlyObjects/Oranges/Orange_2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlyObjects/Oranges/Orange_2/Area2D"]
+position = Vector2( -0.257019, 0.300354 )
+shape = SubResource( 76 )
+
 [node name="Orange_3" type="Sprite" parent="FlyObjects/Oranges"]
 position = Vector2( 780.868, 483.316 )
 rotation = 1.50659
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 11 )
 script = ExtResource( 4 )
+
+[node name="Area2D" type="Area2D" parent="FlyObjects/Oranges/Orange_3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlyObjects/Oranges/Orange_3/Area2D"]
+shape = SubResource( 77 )
 
 [node name="rand" type="Node2D" parent="FlyObjects"]
 
@@ -466,12 +626,22 @@ rotation = -0.994993
 texture = ExtResource( 3 )
 script = ExtResource( 4 )
 
+[node name="Area2D" type="Area2D" parent="FlyObjects/rand/Oil"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlyObjects/rand/Oil/Area2D"]
+shape = SubResource( 78 )
+
 [node name="Cross" type="Sprite" parent="FlyObjects/rand"]
 position = Vector2( 190.089, 1322.57 )
 rotation = 2.39139
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 12 )
 script = ExtResource( 4 )
+
+[node name="Area2D" type="Area2D" parent="FlyObjects/rand/Cross"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlyObjects/rand/Cross/Area2D"]
+shape = SubResource( 79 )
 
 [node name="StartPlank" type="StaticBody2D" parent="."]
 position = Vector2( 10, 180 )
@@ -1137,6 +1307,13 @@ stream = ExtResource( 40 )
 [node name="GameMusic" type="AnimationPlayer" parent="GameMusic"]
 anims/GameSound = SubResource( 60 )
 
+[node name="GameMusic2" type="AudioStreamPlayer" parent="."]
+pause_mode = 1
+stream = ExtResource( 9 )
+
+[node name="GameMusic2" type="AnimationPlayer" parent="GameMusic2"]
+anims/GameSound = SubResource( 61 )
+
 [node name="GetServerAddres" type="HTTPRequest" parent="."]
 pause_mode = 2
 
@@ -1150,6 +1327,27 @@ use_threads = true
 
 [node name="CheckName" type="HTTPRequest" parent="."]
 pause_mode = 2
+
+[node name="FO" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 41 )
+[connection signal="area_entered" from="FlyObjects/Apples/Apple_1/Area2D" to="FlyObjects/Apples/Apple_1" method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="FlyObjects/Apples/Apple_2/Area2D" to="FlyObjects/Apples/Apple_2" method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="FlyObjects/Apples/Apple_3/Area2D" to="FlyObjects/Apples/Apple_3" method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="FlyObjects/Apples/Apple_4/Area2D" to="FlyObjects/Apples/Apple_4" method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="FlyObjects/Apples/Apple_5/Area2D" to="FlyObjects/Apples/Apple_5" method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="FlyObjects/Bananas/Banana_1/Area2D" to="FlyObjects/Bananas/Banana_1" method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="FlyObjects/Bananas/Banana_2/Area2D" to="FlyObjects/Bananas/Banana_2" method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="FlyObjects/Bananas/Banana_3/Area2D" to="FlyObjects/Bananas/Banana_3" method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="FlyObjects/Bananas/Banana_4/Area2D" to="FlyObjects/Bananas/Banana_4" method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="FlyObjects/Grapes/Grape_1/Area2D" to="FlyObjects/Grapes/Grape_1" method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="FlyObjects/Grapes/Grape_2/Area2D" to="FlyObjects/Grapes/Grape_2" method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="FlyObjects/Grapes/Grape_3/Area2D" to="FlyObjects/Grapes/Grape_3" method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="FlyObjects/Grapes/Grape_4/Area2D" to="FlyObjects/Grapes/Grape_4" method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="FlyObjects/Oranges/Orange_1/Area2D" to="FlyObjects/Oranges/Orange_1" method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="FlyObjects/Oranges/Orange_2/Area2D" to="FlyObjects/Oranges/Orange_2" method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="FlyObjects/Oranges/Orange_3/Area2D" to="FlyObjects/Oranges/Orange_3" method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="FlyObjects/rand/Oil/Area2D" to="FlyObjects/rand/Oil" method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="FlyObjects/rand/Cross/Area2D" to="FlyObjects/rand/Cross" method="_on_Area2D_area_entered"]
 [connection signal="pressed" from="Start_screen/StartButton" to="Start_screen/StartButton" method="_on_StartButton_pressed"]
 [connection signal="finished" from="Start_screen/StartButton/Start_music2" to="." method="_on_Start_music2_finished"]
 [connection signal="pressed" from="End_screen/ColorRect/Retry_label/Retry" to="." method="_on_Retry_pressed"]

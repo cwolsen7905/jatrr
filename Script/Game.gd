@@ -5,10 +5,12 @@ const SPEED 	= 120
 var back_size
 var CURRENT_VERSION
 
+#Robe Vars
+var robe_tscn		= preload("res://Scenes/Robe.tscn")
+var robe_spawn		= 0
+
 var screenW			= 0
 var timer			= 0
-var score			= 0
-var score_time		= 0
 var max_score		= 0
 var need_save		= false
 var gamedata 		= 'user://game_data.save'
@@ -24,15 +26,14 @@ var AnimRecord		= false
 var on_floor		= false
 var planke			= preload("res://Scenes/Plank.tscn")
 var hearthe			= preload("res://Scenes/Health.tscn")
-var robe_tscn		= preload("res://Scenes/Robe.tscn")
+
 var spawnhearth		= 0
-var spawn_robe		= 0
+
 var VERSION			= '0.95'
 var response		= 0
 var network			= false
 var ValidName		= false
 var server_address = ''
-
 
 func _ready():
 	$Pause_screen/VersionLabel.text = 'Version' + VERSION
@@ -55,7 +56,7 @@ func savename(data):
 
 func savegame():
 	fs.open(gamedata, File.WRITE)
-	fs.store_64(score)
+	fs.store_64(Constants.score)
 	fs.close()
 
 func _physics_process(delta):
@@ -73,42 +74,54 @@ func _physics_process(delta):
 		randomize()
 		plank.position.x = rand_range(30, 656)
 		$planks.add_child(plank)
-		score_time += 1
-		#if (score_time == Constants.intro_loop): #MrOlsen MUSIC
-		#	$"Start_screen/StartButton/Start_music2".stop()
-		#if (score_time == Constants.intro_loop):
-		#	$GameMusic.play()
-		randomize()
-		spawnhearth = rand_range(0, 24)
-		spawnhearth = round(spawnhearth)
-		if (score_time > 34 && spawnhearth == 0): #MrOlsen Music
-			var hearth = hearthe.instance()
-			var robe = robe_tscn.instance()
+		Constants.score_time += 1
+			
+		if (Constants.intro_done == 1 && Constants.robe_active == false && Constants.robe_spawned == false):
+			if  (Constants.robe_spawned == false && robe_spawn < Constants.score_time):
+				randomize()
+				robe_spawn = rand_range(1, 5)
+				robe_spawn = round(robe_spawn) + Constants.score_time
+			elif (robe_spawn <= Constants.score_time):
+				var robe = robe_tscn.instance()
+				randomize()
+				robe.position.y = screenW - rand_range(1280, 1380)
+				randomize()
+				robe.position.x = rand_range(30, 676)
+				$hearths.add_child(robe)
+				Constants.robe_spawned = true
+		#else:
+		#	print_debug("ID: " + str(Constants.intro_done) + ", RA: " + str(Constants.robe_active) + "RS: " + str(Constants.robe_spawned) + "ST: " + str(score_time) + ", RST: " + str(robe_spawn))
+				
+		if (Constants.score_time > 34):
 			randomize()
-			hearth.position.y = screenW - rand_range(1280, 1380)
-			randomize()
-			hearth.position.x = rand_range(30, 676)#30
-			$hearths.add_child(hearth)
-			$hearths.add_child(robe)
+			spawnhearth = rand_range(0, 24)
+			spawnhearth = round(spawnhearth)
+			if (spawnhearth == 0): #MrOlsen Music
+				var hearth = hearthe.instance()
+				randomize()
+				hearth.position.y = screenW - rand_range(1280, 1380)
+				randomize()
+				hearth.position.x = rand_range(30, 676)#30
+				$hearths.add_child(hearth)
 		timer = 0
 		
-	$GUI/score.text = 'Score: ' + str(score) + RECORD
+	$GUI/score.text = 'Score: ' + str(Constants.score) + RECORD
 	
-	$End_screen/ColorRect/your_score.text = 'Your Score: ' + str(score)
+	$End_screen/ColorRect/your_score.text = 'Your Score: ' + str(Constants.score)
 	
-	if (max_score < score):
+	if (max_score < Constants.score):
 		RECORD = '!'
 		AnimRecord = true
 		
-	if (max_score > score):
+	if (max_score > Constants.score):
 		need_save = false
 		
 		$End_screen/ColorRect/max_score.text = 'Max Score: ' + str(max_score)
 	else:
 		need_save = true
 		
-		$End_screen/ColorRect/max_score.text = 'Max Score: ' + str(score)
-		max_score = score
+		$End_screen/ColorRect/max_score.text = 'Max Score: ' + str(Constants.score)
+		max_score = Constants.score
 
 func _on_Exit_pressed():
 	if (need_save == true):
@@ -125,6 +138,7 @@ func _on_Resume_pressed():
 	
 func _on_Retry_pressed(): #Retry MrOlsen
 	Constants.intro_done = 0
+	Constants.robe_active = false
 	
 	$Player/PlayerBody.life = true
 	
@@ -133,8 +147,8 @@ func _on_Retry_pressed(): #Retry MrOlsen
 	if (need_save == true):
 		savegame()
 	SAVE = 0
-	score_time = 0
-	score = 0
+	Constants.score_time = 0
+	Constants.score = 0
 	$End_screen.hide()
 	$GUI.show()
 	$StartPlank.timer=0
@@ -150,6 +164,7 @@ func _on_Retry_pressed(): #Retry MrOlsen
 	$Start_screen/StartButton/Start_music2.play(0)
 	#$Start_screen/StartButton/Start_music2/StartSound.play('soundstart')
 	$GameMusic.stop()
+	$GameMusic2.stop()
 	
 	Constants.intro_done = 0
 
@@ -237,6 +252,5 @@ func _on_GetServerAddres_request_completed(_result, response_code, _headers, bod
 
 
 func _on_Start_music2_finished():
-	print_debug("music finished")
 	Constants.intro_done = 1
 	$GameMusic.play()

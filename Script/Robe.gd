@@ -11,8 +11,16 @@ func _physics_process(delta):
 	position.y += 1.3
 	if position.y > 1281:
 		queue_free()
-
-func _on_HealthArea_area_entered(area):
-	var groups = area.get_groups()
-	if(groups.has("player") && $"../../Player/PlayerBody".need_health == true):
+	elif Constants.robe_active == true:
 		queue_free()
+
+func _on_RobeArea_area_entered(area):
+	
+	var groups = area.get_groups()
+	if(groups.has("player") && Constants.robe_active == false):
+		queue_free()
+		Constants.robe_active = true
+		Constants.robe_spawned = false
+		$"../../Player/PlayerBody/AnimatedSprite".play("wr_jumping")
+		$"../../GameMusic".stop()
+		$"../../GameMusic2".play()
