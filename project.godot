@@ -25,6 +25,11 @@ config/icon="res://App_icon.png"
 
 Constants="*res://Script/Constants.gd"
 
+[compression]
+
+formats/zlib/compression_level=2
+formats/gzip/compression_level=2
+
 [display]
 
 window/size/width=720

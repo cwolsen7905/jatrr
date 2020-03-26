@@ -73,6 +73,7 @@ func _physics_process(delta):
 		$"../../GameMusic".stop()
 		$"../../GUI".hide()
 		Constants.robe_active = false
+		Constants.robe_spawned = false
 	
 	if (protected == true):
 		protcettimer += delta

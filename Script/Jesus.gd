@@ -5,6 +5,7 @@ var POSX = 1
 var POSY = 1
 var ROT = 0
 var START_POSITON
+var COOL_DOWN = 0
 
 func _ready():
 	START_POSITON = position
@@ -14,7 +15,7 @@ func _ready():
 	POSY = rand_range(1, 2)
 
 func _physics_process(_delta):
-	if (Constants.robe_active == true):
+	if Constants.robe_active == true && COOL_DOWN < Constants.score_time:
 		if position.x > 800:
 			POSX = -POSX
 		if position.x < -100:
@@ -28,3 +29,11 @@ func _physics_process(_delta):
 		rotation += ROT
 	if (($"../../".GAME == false || Constants.robe_active == false) && position != START_POSITON):
 		position = START_POSITON
+
+
+func _on_Area2D_area_entered(area):
+	var groups = area.get_groups()
+	if(groups.has("player") && Constants.robe_active == true):
+		$"Sound".play()
+		position = START_POSITON
+		COOL_DOWN = Constants.score_time + rand_range(30, 60)

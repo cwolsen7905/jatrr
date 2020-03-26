@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Script/Jesus.gd" type="Script" id=1]
+[ext_resource path="res://Music/371763_5611089-lq.ogg" type="AudioStream" id=2]
 [ext_resource path="res://Images/Jesus/Jesus_1.png" type="Texture" id=3]
 [ext_resource path="res://Images/Jesus/Jesus_5.png" type="Texture" id=4]
 [ext_resource path="res://Images/Jesus/Jesus_4.png" type="Texture" id=5]
@@ -16,6 +17,9 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 53.7404, 143.34 )
+
 [node name="Jesus" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -25,4 +29,15 @@ scale = Vector2( 1.5, 1.5 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
+frame = 5
 playing = true
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 2 )
+volume_db = 24.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 2 )
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]

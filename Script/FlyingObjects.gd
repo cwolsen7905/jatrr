@@ -31,8 +31,8 @@ func _physics_process(_delta):
 
 func _on_Area2D_area_entered(area):
 	var groups = area.get_groups()
-	if(groups.has("player")):
+	if(groups.has("player") && Constants.robe_active == true):
 		$"../../../FO".play()
 		position = START_POSITON
-		COOL_DOWN = Constants.score_time + 10
+		COOL_DOWN = Constants.score_time + rand_range(15, 45)
 		Constants.score += 5

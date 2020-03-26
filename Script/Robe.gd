@@ -11,6 +11,7 @@ func _physics_process(delta):
 	position.y += 1.3
 	if position.y > 1281:
 		queue_free()
+		Constants.robe_spawned = false
 	elif Constants.robe_active == true:
 		queue_free()
 
