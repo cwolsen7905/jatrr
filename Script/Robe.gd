@@ -16,7 +16,7 @@ func _physics_process(delta):
 		queue_free()
 
 func _on_RobeArea_area_entered(area):
-	
+
 	var groups = area.get_groups()
 	if(groups.has("player") && Constants.robe_active == false):
 		queue_free()

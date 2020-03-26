@@ -1,6 +1,6 @@
 extends Node2D
 
- 
+
 var POSX = 1
 var POSY = 1
 var ROT = 0

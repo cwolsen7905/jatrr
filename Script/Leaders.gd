@@ -3,7 +3,7 @@ extends Control
 var list
 var FILE = 'user://leaders.list'
 var gamedata = 'user://gamedata-test.save'
-var fs = File.new()
+var fs
 var max_score = 0
 
 func update():
@@ -16,11 +16,13 @@ func _on_GetLeaders_request_completed(_result, response_code, _headers, body):
 	list = body.get_string_from_utf8()
 	$BlackBack/YourScore.text = 'Your max score: ' + str($"../".max_score)
 	if(response_code == 200):
+		fs = File.new()
 		fs.open(FILE, File.WRITE)
 		fs.store_string(list)
 		fs.close()
 		_print_list()
 	else:
+		fs = File.new()
 		fs.open(FILE, File.READ)
 		list = fs.get_as_text()
 		fs.close()

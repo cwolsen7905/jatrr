@@ -17,8 +17,8 @@ var gamedata 		= 'user://game_data.save'
 var playernamedata	= 'user://player_data.save'
 var playername		= ''
 var CanChangeNick 	= false
-var fs				= File.new()
-var fsp				= File.new()
+var fs
+var fsp
 var GAME 			= true
 var SAVE			= 0
 var RECORD			= ''
@@ -38,10 +38,12 @@ var server_address = ''
 func _ready():
 	$Pause_screen/VersionLabel.text = 'Version' + VERSION
 	back_size = $Background/background_image.texture.get_size()
+	fs = File.new()
 	screenW = get_viewport().get_visible_rect().size.y
 	fs.open(gamedata, File.READ)
 	max_score = fs.get_64()
 	fs.close()
+	fsp = File.new()
 	fsp.open(playernamedata, File.READ)
 	playername = fsp.get_as_text()
 	fsp.close()
@@ -75,7 +77,7 @@ func _physics_process(delta):
 		plank.position.x = rand_range(30, 656)
 		$planks.add_child(plank)
 		Constants.score_time += 1
-			
+
 		if (Constants.intro_done == 1 && Constants.robe_active == false && Constants.robe_spawned == false):
 			if  (Constants.robe_spawned == false && robe_spawn < Constants.score_time):
 				randomize()
@@ -89,9 +91,6 @@ func _physics_process(delta):
 				robe.position.x = rand_range(30, 676)
 				$hearths.add_child(robe)
 				Constants.robe_spawned = true
-		#else:
-		#	print_debug("ID: " + str(Constants.intro_done) + ", RA: " + str(Constants.robe_active) + "RS: " + str(Constants.robe_spawned) + "ST: " + str(score_time) + ", RST: " + str(robe_spawn))
-				
 		if (Constants.score_time > 34):
 			randomize()
 			spawnhearth = rand_range(0, 24)
@@ -104,22 +103,22 @@ func _physics_process(delta):
 				hearth.position.x = rand_range(30, 676)#30
 				$hearths.add_child(hearth)
 		timer = 0
-		
+
 	$GUI/score.text = 'Score: ' + str(Constants.score) + RECORD
-	
+
 	$End_screen/ColorRect/your_score.text = 'Your Score: ' + str(Constants.score)
-	
+
 	if (max_score < Constants.score):
 		RECORD = '!'
 		AnimRecord = true
-		
+
 	if (max_score > Constants.score):
 		need_save = false
-		
+
 		$End_screen/ColorRect/max_score.text = 'Max Score: ' + str(max_score)
 	else:
 		need_save = true
-		
+
 		$End_screen/ColorRect/max_score.text = 'Max Score: ' + str(Constants.score)
 		max_score = Constants.score
 
@@ -135,13 +134,13 @@ func _on_PauseButton_pressed():
 func _on_Resume_pressed():
 	$Pause_screen.hide()
 	get_tree().paused = false
-	
+
 func _on_Retry_pressed(): #Retry MrOlsen
 	Constants.intro_done = 0
 	Constants.robe_active = false
-	
+
 	$Player/PlayerBody.life = true
-	
+
 	RECORD = ''
 	AnimRecord = false
 	if (need_save == true):
@@ -160,12 +159,11 @@ func _on_Retry_pressed(): #Retry MrOlsen
 		i.queue_free()
 	GAME = true
 	get_tree().paused = false
-	
+
 	$Start_screen/StartButton/Start_music2.play(0)
-	#$Start_screen/StartButton/Start_music2/StartSound.play('soundstart')
 	$GameMusic.stop()
 	$GameMusic2.stop()
-	
+
 	Constants.intro_done = 0
 
 func _on_BackFromAboutMe_pressed():

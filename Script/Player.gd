@@ -42,17 +42,17 @@ func _physics_process(delta):
 		$"../../".on_floor = true
 	else:
 		$"../../".on_floor = false
-		
+
 	vel = move_and_slide(vel, Vector2(0, -1))
 	FLOOR = false
-	
+
 	if position.x < -385:
 		position.x = 385
-	
+
 	if position.x > 385:
 		position.x = -360
-	
-	
+
+
 	if (position.y > 480 || LIFES == 0):
 		#print ('fail')
 		$"../../End_screen".check_network()
@@ -74,7 +74,7 @@ func _physics_process(delta):
 		$"../../GUI".hide()
 		Constants.robe_active = false
 		Constants.robe_spawned = false
-	
+
 	if (protected == true):
 		protcettimer += delta
 		if(transparent > 0.5):

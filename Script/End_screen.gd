@@ -2,13 +2,13 @@ extends Control
 
 func check_network():
 	$ColorRect/ShareResult.text = ''
-	
+
 	$"../VersionGet".request(Constants.serverAddress + "HighScore")
-	var t = Timer.new() 
-	t.set_wait_time(0.4) 
+	var t = Timer.new()
+	t.set_wait_time(0.4)
 	add_child(t)
-	t.start()	
-	yield(t, "timeout")	
+	t.start()
+	yield(t, "timeout")
 	if ($"../".response == 200):
 		$ColorRect/ShareResult.add_color_override("font_color", Color("25ff00"))
 		$ColorRect/ShareResult.text = 'Server Available, Result Sent'
