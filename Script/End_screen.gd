@@ -2,7 +2,6 @@ extends Control
 
 func check_network():
 	$ColorRect/ShareResult.text = ''
-
 	$"../VersionGet".request(Constants.serverAddress + "HighScore")
 	var t = Timer.new()
 	t.set_wait_time(0.4)

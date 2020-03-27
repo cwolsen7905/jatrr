@@ -54,10 +54,8 @@ func _physics_process(delta):
 
 
 	if (position.y > 480 || LIFES == 0):
-		#print ('fail')
 		$"../../End_screen".check_network()
 		$"../../".send_score($"../../".playername, Constants.score)
-		#$"../../".playername, $"../../".score)
 		LIFES = 4
 		$"../../GUI/Health".set_value(LIFES)
 		if($"../../".AnimRecord == true):
@@ -74,7 +72,7 @@ func _physics_process(delta):
 		$"../../GUI".hide()
 		Constants.robe_active = false
 		Constants.robe_spawned = false
-
+		Constants.robe_spawn_time = 0
 	if (protected == true):
 		protcettimer += delta
 		if(transparent > 0.5):
@@ -96,7 +94,6 @@ func _physics_process(delta):
 	if (anim != anim_last):
 		sprite.play(anim)
 		anim_last = anim
-
 
 func _on_JumpArea2D_area_entered(area):
 	var groups = area.get_groups()

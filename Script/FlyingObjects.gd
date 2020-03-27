@@ -34,5 +34,5 @@ func _on_Area2D_area_entered(area):
 	if(groups.has("player") && Constants.robe_active == true):
 		$"../../../FO".play()
 		position = START_POSITON
-		COOL_DOWN = Constants.score_time + rand_range(15, 45)
+		COOL_DOWN = Constants.score_time + rand_range(5, 45)
 		Constants.score += 5

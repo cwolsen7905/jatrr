@@ -11,8 +11,6 @@ var last_state
 
 func _physics_process(delta):
 	position.y += SPEED
-
-	#if $"../../".score > SPEED_LEVEL:
 	if Constants.score > SPEED_LEVEL:
 		SPEED += 0.0005
 		SPEED_LEVEL += 1
@@ -36,7 +34,7 @@ func _physics_process(delta):
 			if (OBJ_UNHIDE == 0):
 				$Jumper.show()
 				$Jumper/Area2D.add_to_group("jumper")
-			if (OBJ_UNHIDE == 1):
+			if (OBJ_UNHIDE >= 1 && OBJ_UNHIDE <= ((Constants.score + 99)/100)):
 				$Illuminati.show()
 				$Illuminati/Sprite/KillArea.add_to_group("bad")
 

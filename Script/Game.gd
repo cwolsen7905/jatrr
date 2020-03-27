@@ -29,7 +29,7 @@ var hearthe			= preload("res://Scenes/Health.tscn")
 
 var spawnhearth		= 0
 
-var VERSION			= '0.95'
+var VERSION			= '1.0.4'
 var response		= 0
 var network			= false
 var ValidName		= false
@@ -50,13 +50,18 @@ func _ready():
 	$VersionGet.request("https://jatrr.dev.spherepbx.com/current-version")
 	$GetServerAddres.request("https://jatrr.dev.spherepbx.com/rank-server")
 	get_tree().paused = true
+	if (OS.get_name() == "iOS"):
+		$End_screen/ColorRect/Exit_label.visible = false
+		$Pause_screen/Buttons/Exit_label.visible = false
 
 func savename(data):
+	fsp = File.new()
 	fsp.open(playernamedata, File.WRITE)
 	fsp.store_string(data)
 	fsp.close()
 
 func savegame():
+	fs = File.new()
 	fs.open(gamedata, File.WRITE)
 	fs.store_64(Constants.score)
 	fs.close()
@@ -77,13 +82,12 @@ func _physics_process(delta):
 		plank.position.x = rand_range(30, 656)
 		$planks.add_child(plank)
 		Constants.score_time += 1
-
-		if (Constants.intro_done == 1 && Constants.robe_active == false && Constants.robe_spawned == false):
-			if  (Constants.robe_spawned == false && robe_spawn < Constants.score_time):
+		if (Constants.intro_done == true && Constants.robe_active == false && Constants.robe_spawned == false):
+			if  (Constants.robe_spawned == false && Constants.robe_spawn_time < Constants.score_time):
 				randomize()
-				robe_spawn = rand_range(1, 5)
-				robe_spawn = round(robe_spawn) + Constants.score_time
-			elif (robe_spawn <= Constants.score_time):
+				Constants.robe_spawn_time = rand_range(1, 5)
+				Constants.robe_spawn_time = round(Constants.robe_spawn_time) + Constants.score_time
+			elif (Constants.robe_spawn_time <= Constants.score_time):
 				var robe = robe_tscn.instance()
 				randomize()
 				robe.position.y = screenW - rand_range(1280, 1380)
@@ -95,30 +99,24 @@ func _physics_process(delta):
 			randomize()
 			spawnhearth = rand_range(0, 24)
 			spawnhearth = round(spawnhearth)
-			if (spawnhearth == 0): #MrOlsen Music
+			if (spawnhearth == 0):
 				var hearth = hearthe.instance()
 				randomize()
 				hearth.position.y = screenW - rand_range(1280, 1380)
 				randomize()
-				hearth.position.x = rand_range(30, 676)#30
+				hearth.position.x = rand_range(30, 676)
 				$hearths.add_child(hearth)
 		timer = 0
-
 	$GUI/score.text = 'Score: ' + str(Constants.score) + RECORD
-
 	$End_screen/ColorRect/your_score.text = 'Your Score: ' + str(Constants.score)
-
 	if (max_score < Constants.score):
 		RECORD = '!'
 		AnimRecord = true
-
 	if (max_score > Constants.score):
 		need_save = false
-
 		$End_screen/ColorRect/max_score.text = 'Max Score: ' + str(max_score)
 	else:
 		need_save = true
-
 		$End_screen/ColorRect/max_score.text = 'Max Score: ' + str(Constants.score)
 		max_score = Constants.score
 
@@ -136,11 +134,9 @@ func _on_Resume_pressed():
 	get_tree().paused = false
 
 func _on_Retry_pressed(): #Retry MrOlsen
-	Constants.intro_done = 0
+	Constants.intro_done = false
 	Constants.robe_active = false
-
 	$Player/PlayerBody.life = true
-
 	RECORD = ''
 	AnimRecord = false
 	if (need_save == true):
@@ -159,12 +155,10 @@ func _on_Retry_pressed(): #Retry MrOlsen
 		i.queue_free()
 	GAME = true
 	get_tree().paused = false
-
 	$Start_screen/StartButton/Start_music2.play(0)
 	$GameMusic.stop()
 	$GameMusic2.stop()
 
-	Constants.intro_done = 0
 
 func _on_BackFromAboutMe_pressed():
 	$Pause_screen/Buttons.show()
@@ -208,7 +202,6 @@ func send_score(player, new_score):
 	var headers = ["Content-Type: application/json"]
 	$ResultSend.request(Constants.serverAddress + 'ScriptScore.php', headers, false, HTTPClient.METHOD_POST, query)
 
-
 func _on_Skip_pressed():
 	savename("Anonymous")
 	CanChangeNick = true
@@ -250,5 +243,5 @@ func _on_GetServerAddres_request_completed(_result, response_code, _headers, bod
 
 
 func _on_Start_music2_finished():
-	Constants.intro_done = 1
+	Constants.intro_done = true
 	$GameMusic.play()
