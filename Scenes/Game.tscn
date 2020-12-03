@@ -1334,6 +1334,9 @@ stream = ExtResource( 41 )
 
 [node name="AdMob" type="Node" parent="."]
 script = ExtResource( 42 )
+banner_id = "ca-app-pub-9355609726986218/7656608524"
+interstitial_id = "ca-app-pub-9355609726986218/3908935205"
+rewarded_id = "ca-app-pub-9355609726986218/2706684118"
 [connection signal="area_entered" from="FlyObjects/Apples/Apple_1/Area2D" to="FlyObjects/Apples/Apple_1" method="_on_Area2D_area_entered"]
 [connection signal="area_entered" from="FlyObjects/Apples/Apple_2/Area2D" to="FlyObjects/Apples/Apple_2" method="_on_Area2D_area_entered"]
 [connection signal="area_entered" from="FlyObjects/Apples/Apple_3/Area2D" to="FlyObjects/Apples/Apple_3" method="_on_Area2D_area_entered"]

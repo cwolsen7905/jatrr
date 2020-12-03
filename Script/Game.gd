@@ -35,7 +35,10 @@ var network			= false
 var ValidName		= false
 var server_address = ''
 
+onready var admob = $AdMob
+
 func _ready():
+	loadAds()
 	$Pause_screen/VersionLabel.text = 'Version' + VERSION
 	back_size = $Background/background_image.texture.get_size()
 	fs = File.new()
@@ -245,3 +248,8 @@ func _on_GetServerAddres_request_completed(_result, response_code, _headers, bod
 func _on_Start_music2_finished():
 	Constants.intro_done = true
 	$GameMusic.play()
+	
+func loadAds() -> void:
+	admob.load_banner()
+	admob.load_interstitial()
+	admob.load_rewarded_video()

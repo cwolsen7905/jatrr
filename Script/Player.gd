@@ -66,6 +66,7 @@ func _physics_process(delta):
 		position.y= 0
 		$"../../".GAME = false
 		get_tree().paused = true
+		$"../../AdMob".show_rewarded_video()
 		$"../../End_screen".show()
 		$"../../Start_screen/StartButton/Start_music2".stop()
 		$"../../GameMusic".stop()
