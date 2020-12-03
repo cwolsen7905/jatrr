@@ -1,4 +1,4 @@
-[gd_scene load_steps=121 format=2]
+[gd_scene load_steps=122 format=2]
 
 [ext_resource path="res://Script/Game.gd" type="Script" id=1]
 [ext_resource path="res://Images/Back/back.jpg" type="Texture" id=2]
@@ -41,6 +41,7 @@
 [ext_resource path="res://Script/Leaders.gd" type="Script" id=39]
 [ext_resource path="res://Music/mix 2 for joseph  no intro_01.ogg" type="AudioStream" id=40]
 [ext_resource path="res://Music/Mario-coin-sound.ogg" type="AudioStream" id=41]
+[ext_resource path="res://admob-lib/admob.gd" type="Script" id=42]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 28.0059, 24.9492 )
@@ -1330,6 +1331,9 @@ pause_mode = 2
 
 [node name="FO" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 41 )
+
+[node name="AdMob" type="Node" parent="."]
+script = ExtResource( 42 )
 [connection signal="area_entered" from="FlyObjects/Apples/Apple_1/Area2D" to="FlyObjects/Apples/Apple_1" method="_on_Area2D_area_entered"]
 [connection signal="area_entered" from="FlyObjects/Apples/Apple_2/Area2D" to="FlyObjects/Apples/Apple_2" method="_on_Area2D_area_entered"]
 [connection signal="area_entered" from="FlyObjects/Apples/Apple_3/Area2D" to="FlyObjects/Apples/Apple_3" method="_on_Area2D_area_entered"]
