@@ -1334,6 +1334,7 @@ stream = ExtResource( 41 )
 
 [node name="AdMob" type="Node" parent="."]
 script = ExtResource( 42 )
+is_real = true
 banner_id = "ca-app-pub-9355609726986218/7656608524"
 interstitial_id = "ca-app-pub-9355609726986218/3908935205"
 rewarded_id = "ca-app-pub-9355609726986218/2706684118"
