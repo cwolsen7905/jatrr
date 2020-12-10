@@ -146,7 +146,11 @@ func _on_Retry_pressed(): #Retry MrOlsen
 		savegame()
 	SAVE = 0
 	Constants.score_time = 0
-	Constants.score = 0
+	if ($End_screen/ColorRect/Retry_label.text != "Retry"):
+		$End_screen/ColorRect/Retry_label.text = "Retry"
+	else:
+		Constants.score = 0
+	loadAds()
 	$End_screen.hide()
 	$GUI.show()
 	$StartPlank.timer=0
@@ -161,7 +165,6 @@ func _on_Retry_pressed(): #Retry MrOlsen
 	$Start_screen/StartButton/Start_music2.play(0)
 	$GameMusic.stop()
 	$GameMusic2.stop()
-
 
 func _on_BackFromAboutMe_pressed():
 	$Pause_screen/Buttons.show()
@@ -253,3 +256,10 @@ func loadAds() -> void:
 	admob.load_banner()
 	admob.load_interstitial()
 	admob.load_rewarded_video()
+
+func _on_AdMob_banner_failed_to_load(error_code):
+	$Start_screen/ColorRect/Label.text = error_code
+
+
+func _on_AdMob_rewarded(currency, ammount):
+	$End_screen/ColorRect/Retry_label.text = "Continue"

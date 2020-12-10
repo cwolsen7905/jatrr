@@ -1380,3 +1380,5 @@ rewarded_id = "ca-app-pub-9355609726986218/2706684118"
 [connection signal="request_completed" from="GetServerAddres" to="." method="_on_GetServerAddres_request_completed"]
 [connection signal="request_completed" from="VersionGet" to="." method="_on_VersionGet_request_completed"]
 [connection signal="request_completed" from="CheckName" to="." method="_on_CheckName_request_completed"]
+[connection signal="banner_failed_to_load" from="AdMob" to="." method="_on_AdMob_banner_failed_to_load"]
+[connection signal="rewarded" from="AdMob" to="." method="_on_AdMob_rewarded"]
