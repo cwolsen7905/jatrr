@@ -1,16 +1,34 @@
-# Fabenial-jump
-Github releases: ![GitHub All Releases](https://img.shields.io/github/downloads/Allespro/Fabenial-jump/total.svg)
+# Joseph and the Rainbow Robe (JatRR)
 
-Sourceforge: [![Download Fabenial-jump](https://img.shields.io/sourceforge/dt/fabenial-jump.svg)](https://sourceforge.net/projects/fabenial-jump/files/latest/download)
+![GitHub](https://img.shields.io/github/license/cwolsen7905/jatrr.svg)
 
-![GitHub](https://img.shields.io/github/license/Allespro/Fabenial-jump.svg)
+A mobile endless-runner/platformer built with [Godot Engine](https://godotengine.org/) and published to the Google Play Store by V1 Games.
 
-One of my Godot games
-**My best game!**
+## About
 
-![screenshot of sample](https://github.com/Allespro/Fabenial-jump/blob/master/Pictures/img.png)
+Joseph and the Rainbow Robe (JatRR) is an Android game inspired by the biblical story of Joseph. Jump across planks, dodge flying objects, and collect the Rainbow Robe to rack up your high score. Features a global leaderboard and AdMob integration.
 
-**Fabenial jump** is a remake all of the known game "Doodle jump" for computers. I want to make this game cheerful thanks to ridiculous effects and music.
-If you want add something, add issue.
+## Features
 
-[![Download Fabenial-jump](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/fabenial-jump/files/latest/download)
+- Endless platforming gameplay
+- Rainbow Robe power-up mechanic
+- Global high score leaderboard
+- Touch controls for Android
+- AdMob ads
+
+## Tech Stack
+
+- **Engine:** Godot 3.x
+- **Platform:** Android
+- **Ads:** GodotAdMob plugin
+- **Package:** `com.v1games.jatrr`
+
+## Building
+
+1. Open the project in Godot 3.x.
+2. Configure the Android export preset with your keystore (`jatrr.keystore`).
+3. Build via **Project → Export → Android**.
+
+## License
+
+See [LICENSE](LICENSE).
